@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -40,12 +42,15 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
+    {{-- <link href="{{asset('assets/select2.min.css')}}" rel="stylesheet" /> --}}
+    {{-- <script src="{{asset('assets/select2.min.js')}}"></script> --}}
+
+    <link href="{{asset('dist/css/select2.min.css') }}" rel="stylesheet" />
+    <script src="{{asset('dist/js/select2.min.js') }}"></script>
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
-       <!-- select2 -->
-       <link rel="stylesheet" href="{{asset('asset/js/plugins/select2/css/select2.min.css')}}">
-       <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+       
 
 </head>
 <style>
@@ -110,7 +115,7 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+            <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('admin_main') }}">
                     {{ config('app.name', 'คลีนิก') }}
                 </a>
@@ -190,7 +195,7 @@
   {{-- <script src="{{ asset('pkclaim/libs/metismenu/metisMenu.min.js') }}"></script> --}}
   {{-- <script src="{{ asset('pkclaim/libs/simplebar/simplebar.min.js') }}"></script> --}}
   {{-- <script src="{{ asset('pkclaim/libs/node-waves/waves.min.js') }}"></script> --}}
-  <script src="{{ asset('js/select2.min.js') }}"></script>
+  {{-- <script src="{{ asset('js/select2.min.js') }}"></script> --}}
   {{-- <script src="{{ asset('pkclaim/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
   <script src="{{ asset('pkclaim/libs/spectrum-colorpicker2/spectrum.min.js') }}"></script>
   <script src="{{ asset('pkclaim/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js') }}"></script>
@@ -232,6 +237,9 @@
   <!-- App js -->
   {{-- <script src="{{ asset('pkclaim/js/app.js') }}"></script> --}}
   <script src="{{ asset('assets/jquery-tabledit/jquery.tabledit.min.js') }}"></script>
+<!-- select2 -->
+<link rel="stylesheet" href="{{asset('dist/js/plugins/select2/css/select2.min.css')}}">
+ 
 
 
 </body>
