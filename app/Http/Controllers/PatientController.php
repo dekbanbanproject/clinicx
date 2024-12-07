@@ -25,7 +25,9 @@ class PatientController extends Controller
         $data['mm']                 = date('H:m:s');
         $data['datefull']           = date('Y-m-d H:m:s');
         $months                     = date('m');
-        $data['monthsnew']          = substr($months,1,2);  
+        $data['monthsnew']          = substr($months,1,2); 
+        $data['users_prefix']             = DB::select('SELECT * FROM users_prefix'); 
+
 
         return view('patient', $data,[
             'startdate'   => $startdate,
