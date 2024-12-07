@@ -79,4 +79,46 @@ class PatientController extends Controller
             // 'bg_yearnow'  => $bg_yearnow,
         ]);
     }
+    public function load_data_table(Request $request)
+    {
+        $id               = $request->store_code;  
+        $data_person      = DB::select('SELECT * FROM users WHERE store_code = "'.$id.'" ORDER BY wh_recieve_sub_id DESC');  
+            
+        $output='                    
+                 <table id="scroll-vertical-datatable" class="table table-sm table-striped dt-responsive nowrap w-100">                                              
+                        <thead>  
+                                 <tr>
+                                        <th width="5%" class="text-center" style="background-color: rgb(222, 201, 248);font-size: 12px;">ลำดับ</th>
+                                        <th class="text-center" style="background-color: rgb(222, 201, 248);font-size: 12px;">hn</th>
+                                        <th class="text-center" style="background-color: rgb(222, 201, 248);font-size: 12px;">cid</th>
+                                        <th class="text-center" style="background-color: rgb(222, 201, 248);font-size: 12px;">ชื่อ-นามสกุล</th>
+                                        <th class="text-center" style="background-color: rgb(222, 201, 248);font-size: 12px;">สิทธิ์</th>
+                                        <th class="text-center" style="background-color: rgb(222, 201, 248);font-size: 12px;">สถานะ</th>
+                                </tr>  
+                        </thead>
+                    <tbody>
+                        ';
+                
+                        $i = 1;
+                        foreach ($data_person as $key => $value) {
+                            
+                            $output.=' 
+                              <tr id="tr_'.$value->id.'">
+                                <td>'.$i++.'</td> 
+                                <td>'.$value->hn.'</td>
+                                <td>'.$value->cid.'</td>
+                                <td>'.$value->fname.' - '.$value->fname.'</td>
+                                <td>'.$value->pttype.'</td>  
+                                <td>'.$value->pttype.'</td>       
+                                <td>'.$value->active.'</td>                                                 
+                            </tr>';
+                        }
+                    
+                        $output.='
+                    </tbody> 
+                </table> 
+                
+        ';
+        echo $output;        
+    }
 }

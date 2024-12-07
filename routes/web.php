@@ -45,3 +45,5 @@ Route::get('/staff', [App\Http\Controllers\HomeController::class, 'staff'])->nam
 Route::get('onestop_service', [App\Http\Controllers\PatientController::class, 'onestop_service'])->name('onestop_service');
 Route::get('patient', [App\Http\Controllers\PatientController::class, 'patient'])->name('patient');
 Route::get('patient_registry', [App\Http\Controllers\PatientController::class, 'patient_registry'])->name('patient_registry');
+Route::get('patient_loadtable', [App\Http\Controllers\PatientController::class, 'patient_loadtable'])->name('patient_loadtable');
+Route::get('registry_save', [App\Http\Controllers\PatientController::class, 'registry_save'])->name('registry_save');

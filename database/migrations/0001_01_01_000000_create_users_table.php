@@ -42,16 +42,17 @@ return new class extends Migration
             $table->double('money', 10, 2)->nullable(); 
             $table->string('color_ot', length: 10)->nullable();
             $table->longText('signature')->nullable();
-           
+            $table->string('pttype', length: 100)->nullable();
             $table->string('ban_no', length: 100)->nullable();
             $table->string('ban_name', length: 100)->nullable();
             $table->string('moo', length: 100)->nullable();
             $table->string('tumbon', length: 10)->nullable();
-            $table->string('aumpher', length: 10)->nullable();
-            $table->string('changwat', length: 10)->nullable();
+            $table->string('ampher', length: 10)->nullable();
+            $table->string('province', length: 10)->nullable();
             $table->string('poscode', length: 10)->nullable();
             $table->longText('address')->nullable();
             $table->timestamp('email_verified_at')->nullable(); 
+            $table->enum('active', ['Y','N'])->default('Y');
             $table->rememberToken();
             $table->timestamps();
         });
