@@ -24,3 +24,7 @@ Route::match(['get', 'post'], 'account_401_claim_zip', [App\Http\Controllers\Acc
 Route::match(['get', 'post'], 'account_401_rep', [App\Http\Controllers\Account401Controller::class, 'account_401_rep'])->name('acc.account_401_rep'); //
 Route::match(['get', 'post'], 'account_401_repsave', [App\Http\Controllers\Account401Controller::class, 'account_401_repsave'])->name('acc.account_401_repsave'); //
 Route::match(['get', 'post'], 'account_401_repsend', [App\Http\Controllers\Account401Controller::class, 'account_401_repsend'])->name('acc.account_401_repsend'); //
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
