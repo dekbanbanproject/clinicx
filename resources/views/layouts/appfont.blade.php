@@ -11,7 +11,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 <!-- Font Awesome -->
-<link href="{{ asset('assets/fontawesome/css/all.css') }}" rel="stylesheet">
+{{-- <link href="{{ asset('assets/fontawesome/css/all.css') }}" rel="stylesheet">
 <link rel="shortcut icon" href="{{ asset('pkclaim/images/logo150.ico') }}">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -32,11 +32,11 @@
 <link href="{{ asset('pkclaim/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}"
     rel="stylesheet" type="text/css" />
 <!-- Bootstrap Css -->
-{{-- <link href="{{ asset('pkclaim/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" /> --}}
+<link href="{{ asset('pkclaim/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
 <!-- Icons Css -->
-{{-- <link href="{{ asset('pkclaim/css/icons.min.css') }}" rel="stylesheet" type="text/css" /> --}}
+<link href="{{ asset('pkclaim/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
 <!-- App Css-->
-{{-- <link href="{{ asset('pkclaim/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" /> --}}
+<link href="{{ asset('pkclaim/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" /> --}}
 
 <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -44,16 +44,12 @@
 
     {{-- <link href="{{asset('assets/select2.min.css')}}" rel="stylesheet" /> --}}
     {{-- <script src="{{asset('assets/select2.min.js')}}"></script> --}}
-<!-- select2 -->
-    {{-- <link rel="stylesheet" href="{{asset('dist/js/plugins/select2/css/select2.min.css')}}"> --}}
-   <!-- Icons Css -->
-   {{-- <link href="{{asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" /> --}}
-   <!-- App Css-->
-   {{-- <link href="{{asset('assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" /> --}}
 
-    {{-- <link rel="stylesheet" href="{{asset('asset/js/plugins/select2/css/select2.min.css')}}"> --}}
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link href="{{asset('dist/css/select2.min.css') }}" rel="stylesheet" />
+    {{-- <link href="{{asset('dist/css/select2.min.css') }}" rel="stylesheet" />
+    <script src="{{asset('dist/js/select2.min.js') }}"></script> --}}
+      <!-- select2 -->
+      <link rel="stylesheet" href="{{asset('asset/js/plugins/select2/css/select2.min.css')}}">
+      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
@@ -136,7 +132,7 @@
 
                         <div class="collapse navbar-collapse" id="navbarNav">
                             <ul class="navbar-nav">
-                              <li class="nav-item">
+                              {{-- <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="{{URL('admin_main')}}">Home</a>
                               </li>
                               <li class="nav-item">
@@ -144,7 +140,7 @@
                               </li>
                               <li class="nav-item">
                                 <a class="nav-link" href="{{URL('patient')}}">ทะเบียนคนไข้</a>
-                              </li>
+                              </li> --}}
                               
                             </ul>
                           </div>
@@ -199,55 +195,14 @@
     <!-- JAVASCRIPT -->
   <script src="{{ asset('pkclaim/libs/jquery/jquery.min.js') }}"></script>
   <script src="{{ asset('pkclaim/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-  {{-- <script src="{{ asset('pkclaim/libs/metismenu/metisMenu.min.js') }}"></script> --}}
-  {{-- <script src="{{ asset('pkclaim/libs/simplebar/simplebar.min.js') }}"></script> --}}
-  {{-- <script src="{{ asset('pkclaim/libs/node-waves/waves.min.js') }}"></script> --}}
-  {{-- <script src="{{ asset('js/select2.min.js') }}"></script> --}}
-  <script src="{{ asset('pkclaim/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
-  <script src="{{ asset('pkclaim/libs/spectrum-colorpicker2/spectrum.min.js') }}"></script>
-  <script src="{{ asset('pkclaim/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js') }}"></script>
-  <script src="{{ asset('pkclaim/libs/admin-resources/bootstrap-filestyle/bootstrap-filestyle.min.js') }}"></script>
-  <script src="{{ asset('pkclaim/libs/bootstrap-maxlength/bootstrap-maxlength.min.js') }}"></script>
-  <script src="{{ asset('pkclaim/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
-  {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.th.min.js" integrity="sha512-cp+S0Bkyv7xKBSbmjJR0K7va0cor7vHYhETzm2Jy//ZTQDUvugH/byC4eWuTii9o5HN9msulx2zqhEXWau20Dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
-
-  <!-- jquery.vectormap map -->
-  {{-- <script src="{{ asset('pkclaim/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js') }}"></script> --}}
-  {{-- <script src="{{ asset('pkclaim/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-us-merc-en.js') }}"></script> --}}
-
-  <!-- Required datatable js -->
-  <script src="{{ asset('pkclaim/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-  <script src="{{ asset('pkclaim/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-  <!-- Buttons examples -->
-  <script src="{{ asset('pkclaim/libs/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
-  <script src="{{ asset('pkclaim/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js') }}"></script>
-  <script src="{{ asset('pkclaim/libs/jszip/jszip.min.js') }}"></script>
-  <script src="{{ asset('pkclaim/libs/pdfmake/build/pdfmake.min.js') }}"></script>
-  <script src="{{ asset('pkclaim/libs/pdfmake/build/vfs_fonts.js') }}"></script>
-  <script src="{{ asset('pkclaim/libs/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
-  <script src="{{ asset('pkclaim/libs/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
-  <script src="{{ asset('pkclaim/libs/datatables.net-buttons/js/buttons.colVis.min.js') }}"></script>
-  <script src="{{ asset('pkclaim/libs/datatables.net-keytable/js/dataTables.keyTable.min.js') }}"></script>
-  <script src="{{ asset('pkclaim/libs/datatables.net-select/js/dataTables.select.min.js') }}"></script>
-  <!-- Responsive examples -->
-  <script src="{{ asset('pkclaim/libs/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
-  <script src="{{ asset('pkclaim/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') }}"></script>
-  <!-- Datatable init js -->
-  <script src="{{ asset('pkclaim/js/pages/datatables.init.js') }}"></script>
-  <script src="{{ asset('pkclaim/libs/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js') }}"></script>
-  <script src="{{ asset('pkclaim/libs/twitter-bootstrap-wizard/prettify.js') }}"></script>
-  <script src="{{ asset('pkclaim/js/pages/form-wizard.init.js') }}"></script>
-  {{-- <script type="text/javascript" src="{{ asset('fullcalendar/lib/moment.min.js') }}"></script> --}}
-  {{-- <script type="text/javascript" src="{{ asset('fullcalendar/fullcalendar.min.js') }}"></script> --}}
-  {{-- <script type="text/javascript" src="{{ asset('fullcalendar/lang/th.js') }}"></script> --}}
-  
-  <!-- App js -->
-  {{-- <script src="{{ asset('pkclaim/js/app.js') }}"></script> --}}
-  <script src="{{ asset('assets/jquery-tabledit/jquery.tabledit.min.js') }}"></script>
-  <script src="{{ asset('js/select2.min.js') }}"></script>
+   
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-  @yield('footer')
+  
+<!-- select2 -->
+<script src="{{ asset('js/select2.min.js') }}"></script>
+{{-- <link rel="stylesheet" href="{{asset('dist/js/plugins/select2/css/select2.min.css')}}"> --}}
+ 
+@yield('footer')
 
 </body>
 </html>

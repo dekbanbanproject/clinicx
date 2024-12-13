@@ -188,15 +188,15 @@ class PatientController extends Controller
         $data_person      = DB::select('SELECT * FROM users ORDER BY id DESC');  
         // WHERE store_code = "'.$id.'"
         $output='                    
-                 <table id="scroll-vertical-datatable" class="table table-sm table-striped dt-responsive nowrap w-100">                                              
+                 <table id="example" class="table table-sm table-striped dt-responsive nowrap w-100">                                              
                         <thead>  
                                  <tr>
                                         <th width="5%" class="text-center" style="background-color: rgb(222, 201, 248);font-size: 12px;">ลำดับ</th>
-                                        <th class="text-center" style="background-color: rgb(222, 201, 248);font-size: 12px;">hn</th>
-                                        <th class="text-center" style="background-color: rgb(222, 201, 248);font-size: 12px;">cid</th>
+                                        <th width="10%" class="text-center" style="background-color: rgb(222, 201, 248);font-size: 12px;">hn</th>
+                                        <th width="10%" class="text-center" style="background-color: rgb(222, 201, 248);font-size: 12px;">cid</th>
                                         <th class="text-center" style="background-color: rgb(222, 201, 248);font-size: 12px;">ชื่อ-นามสกุล</th>
-                                        <th class="text-center" style="background-color: rgb(222, 201, 248);font-size: 12px;">สิทธิ์</th>
-                                        <th class="text-center" style="background-color: rgb(222, 201, 248);font-size: 12px;">สถานะ</th>
+                                        <th width="10%" class="text-center" style="background-color: rgb(222, 201, 248);font-size: 12px;">สิทธิ์</th>
+                                        <th width="10%" class="text-center" style="background-color: rgb(222, 201, 248);font-size: 12px;">สถานะ</th>
                                 </tr>  
                         </thead>
                     <tbody>
@@ -207,12 +207,12 @@ class PatientController extends Controller
                             
                             $output.=' 
                               <tr id="tr_'.$value->id.'">
-                                <td>'.$i++.'</td> 
-                                <td>'.$value->hn.'</td>
-                                <td>'.$value->cid.'</td>
-                                <td>'.$value->fname.' - '.$value->lname.'</td>
-                                <td>'.$value->pttype.'</td>      
-                                <td>'.$value->active.'</td>                                                 
+                                <td width="5%" class="text-center">'.$i++.'</td> 
+                                <td width="10%" class="text-center">'.$value->hn.'</td>
+                                <td width="10%" class="text-center">'.$value->cid.'</td>
+                                <td class="text-start">'.$value->fname.' - '.$value->lname.'</td>
+                                <td width="10%" class="text-center">'.$value->pttype.'</td>      
+                                <td width="10%" class="text-center">'.$value->active.'</td>                                                 
                             </tr>';
                         }
                     
