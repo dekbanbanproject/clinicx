@@ -248,6 +248,38 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   @yield('footer')
+  <script type="text/javascript">
+    $(document).ready(function() {
+        // $('#example').DataTable();
+        // $('#example2').DataTable();
+        // $('#example3').DataTable();
+        // var table = $('#example24').DataTable({
+        //     scrollY: '60vh',
+        //     scrollCollapse: true,
+        //     scrollX: true,
+        //     "autoWidth": false,
+        //     "pageLength": 10,
+        //     "lengthMenu": [10,25,50,100,150,200,300,400,500],
+        // });
+        // var table = $('#example25').DataTable({
+        //     scrollY: '60vh',
+        //     scrollCollapse: true,
+        //     scrollX: true,
+        //     "autoWidth": false,
+        //     "pageLength": 10,
+        //     "lengthMenu": [10,25,50,100,150,200,300,400,500],
+        // });
 
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        
+
+    });
+
+
+</script>
 </body>
 </html>

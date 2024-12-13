@@ -195,11 +195,11 @@ class PatientController extends Controller
                                         <th width="10%" class="text-center" style="background-color: rgb(222, 201, 248);font-size: 12px;">hn</th>
                                         <th width="10%" class="text-center" style="background-color: rgb(222, 201, 248);font-size: 12px;">cid</th>
                                         <th class="text-center" style="background-color: rgb(222, 201, 248);font-size: 12px;">ชื่อ-นามสกุล</th>
-                                        <th width="10%" class="text-center" style="background-color: rgb(222, 201, 248);font-size: 12px;">สิทธิ์</th>
+                                        <th width="40%" class="text-center" style="background-color: rgb(222, 201, 248);font-size: 12px;">สิทธิ์</th>
                                         <th width="10%" class="text-center" style="background-color: rgb(222, 201, 248);font-size: 12px;">สถานะ</th>
                                 </tr>  
                         </thead>
-                    <tbody>
+                    <tbody id="myTable">
                         ';
                 
                         $i = 1;
@@ -211,7 +211,7 @@ class PatientController extends Controller
                                 <td width="10%" class="text-center">'.$value->hn.'</td>
                                 <td width="10%" class="text-center">'.$value->cid.'</td>
                                 <td class="text-start">'.$value->fname.' - '.$value->lname.'</td>
-                                <td width="10%" class="text-center">'.$value->pttype.'</td>      
+                                <td width="40%" class="text-center">'.$value->pttype.'</td>      
                                 <td width="10%" class="text-center">'.$value->active.'</td>                                                 
                             </tr>';
                         }
@@ -222,5 +222,82 @@ class PatientController extends Controller
                 
         ';
         echo $output;        
+    }
+    public function patient_save(Request $request)
+    {
+        $pname_       = $request->pname;
+        $fname       = $request->fname;
+        $lname       = $request->lname;       
+        $pttype      = $request->pttype;
+        $cid         = $request->cid;
+        $tel         = $request->tel;
+        $ban_no      = $request->ban_no;
+        $ban_name    = $request->ban_name;
+        $province    = $request->province;
+        $ampher      = $request->ampher;
+        $tumbon      = $request->tumbon;
+        $poscode     = $request->poscode;
+        $maxnumber   = DB::table('users')->max('hn');
+        $maxhn       =  $maxnumber+1;
+        if ($pname_ !='') {
+            $pname   = $request->pname;
+        } else {
+            $pname   = '';
+        }
+        
+        // = DB::select('SELECT * FROM users_prefix'); 
+        $check = User::where('cid',$cid)->count();
+        if ($check > 0) {
+            User::where('cid',$cid)->update([
+                // 'hn'        => $maxhn,
+                'pname'     => $pname,
+                'fname'     => $fname,
+                'lname'     => $lname,
+                'pttype'    => $pttype,
+                'tel'       => $tel,
+                'ban_no'    => $ban_no,
+                'ban_name'  => $ban_name,
+                'province'  => $province,
+                'ampher'    => $ampher,
+                'tumbon'    => $tumbon,
+                'poscode'   => $poscode 
+            ]);
+        } else {
+            User::insert([
+                'pname'     => $pname,
+                'fname'     => $fname,
+                'lname'     => $lname,
+                'pttype'    => $pttype,
+                'tel'       => $tel,
+                'ban_no'    => $ban_no,
+                'ban_name'  => $ban_name,
+                'province'  => $province,
+                'ampher'    => $ampher,
+                'tumbon'    => $tumbon,
+                'poscode'   => $poscode,
+                'username'  => $cid, 
+                'password'  => '$2y$12$lRkqzSStpWdPUvBRLBQ1n.EQXrsU3Ak2Qe1aX7qF57ZrPZ1HcHlOm', 
+                'cid'       => $cid,
+                'hn'        => $maxhn,
+
+                
+            ]);
+        }
+        
+        $data['date_now']          = date('Y-m-d');
+  
+        $yy1                        = date('Y') + 543;
+        $yy2                        = date('Y') + 542;
+        $yy3                        = date('Y') + 541;
+        $data['m']                  = date('H');
+        $data['mm']                 = date('H:m:s');
+        $data['datefull']           = date('Y-m-d H:m:s');
+        $months                     = date('m');
+        $data['monthsnew']          = substr($months,1,2);  
+
+        return response()->json([
+            'status'     => '200'
+        ]);
+        
     }
 }

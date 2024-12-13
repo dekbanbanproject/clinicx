@@ -33,11 +33,23 @@
                 <div id="collapseOne" class="collapse show"
                         aria-labelledby="headingOne" data-bs-parent="#accordion">
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12"> 
-                                <div id="getdata_show"></div> 
+                        <body>
+
+                            <div class="row">
+                                <div class="col-md-12"> 
+                                
+                                    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+                                 
+                                    <div style='overflow:scroll; height:300px;' class="mt-2">
+
+                                        <div id="getdata_show"></div>
+
+                                    </div>
+                                </div> 
                             </div> 
-                        </div> 
+
+                        </body>
+
                     </div>
                 </div>
             </div>
@@ -86,7 +98,7 @@
                                         <div class="col-md-12"> 
                                             <div class="input-group flex-nowrap">
                                                 <span class="input-group-text" id="addon-wrapping">สิทธิ์การรักษา</span>
-                                                <input type="text" class="form-control input_new" id="pttype" name="pttype" placeholder="" aria-label="สิทธิ์การรักษา" aria-describedby="addon-wrapping" value="{{$subInscl}}">
+                                                <input type="text" class="form-control input_new" id="pttype" name="pttype" placeholder="" aria-label="สิทธิ์การรักษา" aria-describedby="addon-wrapping" value="{{$mainInscl}}">
                                                 </div>
                                         </div>
                                     </div>
@@ -116,7 +128,7 @@
                                         <div class="col-md-4"> 
                                             <div class="input-group flex-nowrap">
                                                 <span class="input-group-text" id="addon-wrapping">หมู่บ้าน</span>
-                                                <input type="text" class="form-control input_new" id="ban_no" name="ban_no" placeholder="" aria-label="บ้านเลขที่" aria-describedby="addon-wrapping">
+                                                <input type="text" class="form-control input_new" id="ban_name" name="ban_name" placeholder="" aria-label="หมู่บ้าน" aria-describedby="addon-wrapping">
                                                 </div>
                                         </div> 
                                         <div class="col-md-4"> 
@@ -131,7 +143,21 @@
                                                 <input type="text" class="form-control input_new" id="ampher" name="ampher" placeholder="" aria-label="อำเภอ" aria-describedby="addon-wrapping">
                                                 </div>
                                         </div> 
-                                    </div>                                                   
+                                    </div>    
+                                    <div class="row mt-2">
+                                        <div class="col-md-4"> 
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text" id="addon-wrapping">ตำบล</span>
+                                                <input type="text" class="form-control input_new" id="tumbon" name="tumbon" placeholder="" aria-label="ตำบล" aria-describedby="addon-wrapping">
+                                                </div>
+                                        </div> 
+                                        <div class="col-md-4"> 
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text" id="addon-wrapping">รหัสไปรษณีย์</span>
+                                                <input type="text" class="form-control input_new" id="poscode" name="poscode" placeholder="" aria-label="รหัสไปรษณีย์" aria-describedby="addon-wrapping">
+                                                </div>
+                                        </div> 
+                                    </div>                                                  
                                 </div>            
                                 <div class="col-md-2 text-center"> 
                                     <img src="data:image/png;base64,{{ $image }}" alt="" width="150px" height="auto">
@@ -181,6 +207,14 @@
                 });                     
         } 
      $(document).ready(function() {
+
+        $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+
             $('select').select2();
             $('#example').DataTable();
             $('#example2').DataTable();
@@ -211,27 +245,38 @@
             $("#spinner-div").hide(); //Request is complete so hide spinner
                                           
            
-            $('#Addproduct').click(function() {
-                var pro_id           = $('#pro_id').val(); 
-                var qty              = $('#qty').val(); 
-                var one_price        = $('#one_price').val(); 
-                var lot_no           = $('#lot_no').val(); 
-                var stock_list_id    = $('#stock_list_id').val(); 
-                var wh_recieve_id    = $('#wh_recieve_id').val();  
-                var data_year        = $('#data_year').val();  
-                            
+            $('#UpdateData').click(function() {
+                var pname           = $('#pname').val(); 
+                var fname              = $('#fname').val(); 
+                var lname        = $('#lname').val(); 
+                var pttype           = $('#pttype').val(); 
+                var cid    = $('#cid').val(); 
+                var tel    = $('#tel').val();  
+                var ban_no        = $('#ban_no').val();  
+                var ban_name        = $('#ban_name').val();  
+                var province        = $('#province').val();  
+                var ampher        = $('#ampher').val();  
+                var tumbon        = $('#tumbon').val();  
+                var poscode        = $('#poscode').val();  
+                
                         $.ajax({
-                            url: "{{ route('registry_save') }}",
+                            url: "{{ route('patient_save') }}",
                             type: "POST",
                             dataType: 'json',
-                            data: {pro_id,qty,one_price,lot_no,wh_recieve_id,stock_list_id,data_year},
+                            data: {pname,fname,lname,pttype,cid,tel,ban_no,ban_name,province,ampher,tumbon,poscode},
                             success: function(data) {
-                                load_data_table(); 
-                                $('#qty').val("");
-                                $('#one_price').val("");
-                                $('#pro_id').val("");
+                                patient_loadtable(); 
+                                // $('#qty').val("");
+                                // $('#one_price').val("");
+                                // $('#pro_id').val("");
                                 if (data.status == 200) { 
-                                  
+                                    Swal.fire({
+                                        position: "top-end",
+                                        icon: "success",
+                                        title: "Your work has been saved",
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                        });
                                 } else {
                                     
                                 }
