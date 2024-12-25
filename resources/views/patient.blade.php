@@ -77,11 +77,13 @@
                                                     <option value="">-เลือก-</option>
                                                     @foreach ($users_prefix as $item)
                                                         @if($pname =='001')
-                                                            <option value="3" selected>นางสาว</option> 
+                                                            <option value="10" selected>ด.ช.</option> 
                                                         @elseif($pname =='002')
-                                                            <option value="2" selected>นาง</option> 
+                                                            <option value="11" selected>ด.ญ.</option> 
                                                         @elseif($pname =='003')
                                                             <option value="1" selected>นาย</option> 
+                                                        @elseif($pname =='004')
+                                                            <option value="2" selected>นาง</option> 
                                                         @else
                                                             
                                                         @endif
