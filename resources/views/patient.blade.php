@@ -87,7 +87,9 @@
                                                         @elseif($pname =='005')
                                                             <option value="2" selected>นาง</option> 
                                                         @else
-                                                            
+                                                        @foreach ($users_prefix as $item)
+                                                            <option value="{{$item->prefix_id}}">{{$item->prefix_name}}</option> 
+                                                        @endforeach 
                                                         @endif                                                   
                                                     {{-- @endforeach --}}
                                                 </select>
