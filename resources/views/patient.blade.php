@@ -76,7 +76,16 @@
                                                 <select class="form-control input_new" id="pname" name="pname" style="width: 100%">
                                                     <option value="">-เลือก-</option>
                                                     @foreach ($users_prefix as $item)
-                                                    <option value="{{$item->prefix_id}}">{{$item->prefix_name}}</option> 
+                                                        @if($pname =='001')
+                                                            <option value="3" selected>นางสาว</option> 
+                                                        @elseif($pname =='002')
+                                                            <option value="2" selected>นาง</option> 
+                                                        @elseif($pname =='003')
+                                                            <option value="1" selected>นาย</option> 
+                                                        @else
+                                                            <option value="{{$item->prefix_id}}">{{$item->prefix_name}}</option> 
+                                                        @endif
+                                                   
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -180,7 +189,7 @@
                                         <div class="col-md-4"> 
                                             <div class="input-group flex-nowrap">
                                                 <span class="input-group-text" id="addon-wrapping">รหัสไปรษณีย์</span>
-                                                <input type="text" class="form-control input_new pocode" id="poscode" name="poscode" placeholder="" aria-label="รหัสไปรษณีย์" aria-describedby="addon-wrapping">
+                                                <input type="text" class="form-control input_new po_code" id="pocode" name="pocode" placeholder="" aria-label="รหัสไปรษณีย์" aria-describedby="addon-wrapping">
                                                 </div>
                                         </div> 
                                     </div>                                                  
@@ -357,7 +366,7 @@
                             method:"GET",
                             data:{select:select,province:province,amphur:amphur,_token:_token},
                             success:function(result){
-                            $('.pocode').html(result);
+                            $('.po_code').html(result);
                             }
                     }) 
                 }        

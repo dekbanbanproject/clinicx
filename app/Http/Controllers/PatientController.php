@@ -83,6 +83,8 @@ class PatientController extends Controller
         $image           = @$image;
         $correlationId   = @$correlationId;
 
+        // dd($pname);
+
         $data['thaiaddress_provine'] =  DB::connection('mysql')->select('SELECT chwpart,name from thaiaddress WHERE codetype="1"');
         $data['thaiaddress_amphur'] =  DB::connection('mysql')->select('SELECT amppart,name from thaiaddress WHERE codetype="2"');
         $data['thaiaddress_tumbon'] =  DB::connection('mysql')->select('SELECT tmbpart,name from thaiaddress WHERE codetype="3"');
@@ -240,9 +242,9 @@ class PatientController extends Controller
         $ban_no      = $request->ban_no;
         $ban_name    = $request->ban_name;
         $province    = $request->province;
-        $ampher      = $request->ampher;
-        $tumbon      = $request->tumbon;
-        $poscode     = $request->poscode;
+        $amphur      = $request->amphur;
+        $tumbons      = $request->tumbons;
+        $poscode     = $request->pocode;
         $maxnumber   = DB::table('users')->max('hn');
         $maxhn       =  $maxnumber+1;
         if ($pname_ !='') {
@@ -264,8 +266,8 @@ class PatientController extends Controller
                 'ban_no'    => $ban_no,
                 'ban_name'  => $ban_name,
                 'province'  => $province,
-                'ampher'    => $ampher,
-                'tumbon'    => $tumbon,
+                'ampher'    => $amphur,
+                'tumbon'    => $tumbons,
                 'poscode'   => $poscode 
             ]);
         } else {
@@ -278,8 +280,8 @@ class PatientController extends Controller
                 'ban_no'    => $ban_no,
                 'ban_name'  => $ban_name,
                 'province'  => $province,
-                'ampher'    => $ampher,
-                'tumbon'    => $tumbon,
+                'ampher'    => $amphur,
+                'tumbon'    => $tumbons,
                 'poscode'   => $poscode,
                 'username'  => $cid, 
                 'password'  => '$2y$12$lRkqzSStpWdPUvBRLBQ1n.EQXrsU3Ak2Qe1aX7qF57ZrPZ1HcHlOm', 
@@ -358,7 +360,8 @@ class PatientController extends Controller
             //   $query = DB::connection('mysql')->select('SELECT chwpart,amppart,tmbpart,po_code FROM hospcode WHERE chwpart ="'.$province.'" AND amppart ="'.$amphur.'" AND tmbpart ="'.$id.'" AND po_code <> "-" GROUP BY po_code');
             //   $query = DB::connection('mysql')->select('SELECT * FROM hospcode WHERE chwpart ="'.$province.'" AND amppart ="'.$amphur.'" AND tmbpart ="'.$id.'"');
             //   $query= DB::connection('mysql')->table('thaiaddress')->where('chwpart',$province)->where('amppart',$amphur)->where('tmbpart',$id)->get();
-              $query= DB::connection('mysql')->table('hospcode')->where('chwpart',$province)->where('amppart',$amphur)->where('tmbpart',$id)->whereNotIn('po_code','<>',"-")->get();
+              $query= DB::connection('mysql')->table('hospcode')->where('chwpart',$province)->where('amppart',$amphur)->where('tmbpart',$id)->whereNotNull('po_code')->get();
+            //   ->groupBy('po_code')
               // $output=' ';
               $output='<option value="">--Choose--</option> ';
               foreach ($query as $row){
