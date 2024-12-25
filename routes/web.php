@@ -44,7 +44,14 @@ Route::get('/staff', [App\Http\Controllers\HomeController::class, 'staff'])->nam
 
 Route::get('onestop_service', [App\Http\Controllers\PatientController::class, 'onestop_service'])->name('onestop_service');
 Route::get('patient', [App\Http\Controllers\PatientController::class, 'patient'])->name('patient');
-Route::POST('patient_save', [App\Http\Controllers\PatientController::class, 'patient_save'])->name('patient_save');
+// Route::POST('patient_save', [App\Http\Controllers\PatientController::class, 'patient_save'])->name('patient_save');
 Route::get('patient_registry', [App\Http\Controllers\PatientController::class, 'patient_registry'])->name('patient_registry');
 Route::get('patient_loadtable', [App\Http\Controllers\PatientController::class, 'patient_loadtable'])->name('patient_loadtable');
 Route::get('registry_save', [App\Http\Controllers\PatientController::class, 'registry_save'])->name('registry_save');
+
+Route::match(['get', 'post'], 'patient_save', [App\Http\Controllers\PatientController::class, 'patient_save'])->name('patient_save');
+
+Route::match(['get', 'post'], 'fetch_province', [App\Http\Controllers\PatientController::class, 'fetch_province'])->name('fecth.fetch_province');
+Route::match(['get', 'post'], 'fetch_amphur', [App\Http\Controllers\PatientController::class, 'fetch_amphur'])->name('fecth.fetch_amphur');
+Route::match(['get', 'post'], 'fetch_tumbon', [App\Http\Controllers\PatientController::class, 'fetch_tumbon'])->name('fecth.fetch_tumbon');
+Route::match(['get', 'post'], 'fetch_pocode', [App\Http\Controllers\PatientController::class, 'fetch_pocode'])->name('fecth.fetch_pocode');

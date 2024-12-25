@@ -134,27 +134,53 @@
                                         <div class="col-md-4"> 
                                             <div class="input-group flex-nowrap">
                                                 <span class="input-group-text" id="addon-wrapping">จังหวัด</span>
-                                                <input type="text" class="form-control input_new" id="province" name="province" placeholder="" aria-label="จังหวัด" aria-describedby="addon-wrapping">
-                                                </div>
+                                                {{-- <input type="text" class="form-control input_new" id="province" name="province" placeholder="" aria-label="จังหวัด" aria-describedby="addon-wrapping"> --}}
+                                                <select name="province" id="province" class="form-control province" style="width: 100%">
+                                                    @foreach ($thaiaddress_provine as $item_prov)
+                                                    {{-- @if ($chwpart == $item_prov->name)
+                                                    <option value="{{$item_prov->chwpart}}" selected>{{$item_prov->name}}</option>
+                                                    @else --}}
+                                                    <option value="{{$item_prov->chwpart}}">{{$item_prov->name}}</option>
+                                                    {{-- @endif   --}}
+                                                    @endforeach 
+                                                </select>
+                                            </div>
                                         </div> 
                                         <div class="col-md-4"> 
                                             <div class="input-group flex-nowrap">
                                                 <span class="input-group-text" id="addon-wrapping">อำเภอ</span>
-                                                <input type="text" class="form-control input_new" id="ampher" name="ampher" placeholder="" aria-label="อำเภอ" aria-describedby="addon-wrapping">
-                                                </div>
+                                                {{-- <input type="text" class="form-control input_new" id="ampher" name="ampher" placeholder="" aria-label="อำเภอ" aria-describedby="addon-wrapping"> --}}
+                                                <select name="amphur" id="amphur" class="form-control amphur" style="width: 100%">
+                                                    @foreach ($thaiaddress_amphur as $item_amp)
+                                                    {{-- @if ($amppart == $item_amp->name)
+                                                    <option value="{{$item_amp->amppart}}" selected>{{$item_amp->name}}</option>
+                                                    @else --}}
+                                                    <option value="{{$item_amp->amppart}}">{{$item_amp->name}}</option>
+                                                    {{-- @endif --}}                                                    
+                                                    @endforeach 
+                                                </select>  
+                                            </div>
                                         </div> 
                                     </div>    
                                     <div class="row mt-2">
                                         <div class="col-md-4"> 
                                             <div class="input-group flex-nowrap">
-                                                <span class="input-group-text" id="addon-wrapping">ตำบล</span>
-                                                <input type="text" class="form-control input_new" id="tumbon" name="tumbon" placeholder="" aria-label="ตำบล" aria-describedby="addon-wrapping">
-                                                </div>
+                                                <span class="input-group-text" id="addon-wrapping">ตำบล</span> 
+                                                <select name="tumbons" id="tumbons" class="form-control tumbons" style="width: 100%">
+                                                    @foreach ($thaiaddress_tumbon as $item_tum)                                                                                            
+                                                    {{-- @if ($tmbpart == $item_tum->name)
+                                                    <option value="{{$item_tum->tmbpart}}" selected>{{$item_tum->name}}</option>
+                                                    @else --}}
+                                                    <option value="{{$item_tum->tmbpart}}">{{$item_tum->name}}</option>
+                                                    {{-- @endif    --}}
+                                                    @endforeach 
+                                                </select> 
+                                            </div>
                                         </div> 
                                         <div class="col-md-4"> 
                                             <div class="input-group flex-nowrap">
                                                 <span class="input-group-text" id="addon-wrapping">รหัสไปรษณีย์</span>
-                                                <input type="text" class="form-control input_new" id="poscode" name="poscode" placeholder="" aria-label="รหัสไปรษณีย์" aria-describedby="addon-wrapping">
+                                                <input type="text" class="form-control input_new pocode" id="poscode" name="poscode" placeholder="" aria-label="รหัสไปรษณีย์" aria-describedby="addon-wrapping">
                                                 </div>
                                         </div> 
                                     </div>                                                  
@@ -191,7 +217,7 @@
 @endsection
 @section('footer')
 <script>
-     patient_loadtable();            
+        patient_loadtable();            
 
         function patient_loadtable() { 
                 var store_code = document.getElementById("store_code").value; 
@@ -282,10 +308,59 @@
                                 }
                             },
                         }); 
-            });
-           
-           
-  
+            });  
+        });
+
+        //------------------------ จังหวัด ------------------
+
+        $('.province').change(function(){
+                    if($(this).val()!=''){
+                    var select = $(this).val();
+                    var _token=$('input[name="_token"]').val();
+                    // alert(select);
+                        $.ajax({
+                                url:"{{route('fecth.fetch_province')}}",
+                                method:"GET",
+                                data:{select:select,_token:_token},
+                                success:function(result){
+                                    $('.amphur').html(result);
+                                }
+                        }) 
+                    }        
+        });
+
+        $('.amphur').change(function(){
+                if($(this).val()!=''){
+                var select   = $(this).val();
+                var province = $('#province').val();
+                var _token=$('input[name="_token"]').val();
+                // alert(select);
+                    $.ajax({
+                            url:"{{route('fecth.fetch_amphur')}}",
+                            method:"GET",
+                            data:{select:select,province:province,_token:_token},
+                            success:function(result){
+                            $('.tumbons').html(result);
+                            }
+                    }) 
+                }        
+        });
+        $('.tumbons').change(function(){
+                if($(this).val()!=''){
+                var select   = $(this).val();
+                var amphur   = $('#amphur').val();
+                var province = $('#province').val();
+                var _token=$('input[name="_token"]').val();
+                // alert(select);
+                    $.ajax({
+                            url:"{{route('fecth.fetch_tumbon')}}",
+                            method:"GET",
+                            data:{select:select,province:province,amphur:amphur,_token:_token},
+                            success:function(result){
+                            $('.pocode').html(result);
+                            }
+                    }) 
+                }        
         });
 </script>
 

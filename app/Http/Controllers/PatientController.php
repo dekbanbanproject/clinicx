@@ -83,6 +83,10 @@ class PatientController extends Controller
         $image           = @$image;
         $correlationId   = @$correlationId;
 
+        $data['thaiaddress_provine'] =  DB::connection('mysql')->select('SELECT chwpart,name from thaiaddress WHERE codetype="1"');
+        $data['thaiaddress_amphur'] =  DB::connection('mysql')->select('SELECT amppart,name from thaiaddress WHERE codetype="2"');
+        $data['thaiaddress_tumbon'] =  DB::connection('mysql')->select('SELECT tmbpart,name from thaiaddress WHERE codetype="3"');
+        $data['thaiaddress_po_code'] =  DB::connection('mysql')->select('SELECT * FROM hospcode WHERE po_code is not null');
 
         return view('patient', $data,[
             'startdate'     => $startdate,
@@ -185,7 +189,7 @@ class PatientController extends Controller
     public function patient_loadtable(Request $request)
     {
         $id               = $request->store_code;  
-        $data_person      = DB::select('SELECT * FROM users ORDER BY id DESC');  
+        $data_person      = DB::select('SELECT * FROM users WHERE type ="CUSTOMER"  ORDER BY id DESC');  
         // WHERE store_code = "'.$id.'"
         $output='                    
                  <table id="example" class="table table-sm table-striped dt-responsive nowrap w-100">                                              
@@ -196,6 +200,7 @@ class PatientController extends Controller
                                         <th width="10%" class="text-center" style="background-color: rgb(222, 201, 248);font-size: 12px;">cid</th>
                                         <th class="text-center" style="background-color: rgb(222, 201, 248);font-size: 12px;">ชื่อ-นามสกุล</th>
                                         <th width="40%" class="text-center" style="background-color: rgb(222, 201, 248);font-size: 12px;">สิทธิ์</th>
+                                          <th width="10%" class="text-center" style="background-color: rgb(222, 201, 248);font-size: 12px;">บ้าน</th>
                                         <th width="10%" class="text-center" style="background-color: rgb(222, 201, 248);font-size: 12px;">สถานะ</th>
                                 </tr>  
                         </thead>
@@ -211,7 +216,8 @@ class PatientController extends Controller
                                 <td width="10%" class="text-center">'.$value->hn.'</td>
                                 <td width="10%" class="text-center">'.$value->cid.'</td>
                                 <td class="text-start">'.$value->fname.' - '.$value->lname.'</td>
-                                <td width="40%" class="text-center">'.$value->pttype.'</td>      
+                                <td width="40%" class="text-start">'.$value->pttype.'</td>    
+                                 <td width="10%" class="text-center">'.$value->ban_name.'</td>  
                                 <td width="10%" class="text-center">'.$value->active.'</td>                                                 
                             </tr>';
                         }
@@ -279,6 +285,7 @@ class PatientController extends Controller
                 'password'  => '$2y$12$lRkqzSStpWdPUvBRLBQ1n.EQXrsU3Ak2Qe1aX7qF57ZrPZ1HcHlOm', 
                 'cid'       => $cid,
                 'hn'        => $maxhn,
+                'type'      => 'CUSTOMER'
 
                 
             ]);
@@ -300,4 +307,63 @@ class PatientController extends Controller
         ]);
         
     }
+
+      // จังหวัด
+      function fetch_province(Request $request)
+      { 
+              // =  DB::connection('mysql10')->select(' select chwpart,name from thaiaddress WHERE codetype="1"');
+              $id = $request->get('select');
+              $result=array();
+             
+              $query= DB::connection('mysql')->table('thaiaddress') 
+              ->where('chwpart',$id)
+              ->where('codetype','=','2') 
+              ->get();
+  
+              $output='<option value="">--Choose--</option> ';
+              // $output=''; 
+              foreach ($query as $row){ 
+                      $output.= '<option value="'.$row->amppart.'">'.$row->name.'</option>';
+              } 
+              echo $output; 
+      }
+      // อำเภอ
+      function fetch_amphur(Request $request)
+      { 
+              $id          = $request->get('select');
+              $province    = $request->get('province');
+            //   dd($province);
+              $result=array();
+              $query= DB::connection('mysql')->table('thaiaddress')              
+              ->where('chwpart',$province)
+              ->where('amppart',$id)
+              ->where('codetype','=','3')
+              ->get();
+              $output='<option value="">--Choose--</option> ';
+            //   dd($query);
+              foreach ($query as $row){
+  
+                      $output.= '<option value="'.$row->tmbpart.'">'.$row->name.'</option>';
+              } 
+              echo $output; 
+      }
+  
+      function fetch_tumbon(Request $request)
+      { 
+              $id          = $request->get('select');
+              $amphur    = $request->get('amphur');
+              $province    = $request->get('province');
+            //   dd($amphur);
+              $result=array();
+            //   $query = DB::connection('mysql')->select('SELECT chwpart,amppart,tmbpart,po_code FROM hospcode WHERE chwpart ="'.$province.'" AND amppart ="'.$amphur.'" AND tmbpart ="'.$id.'" AND po_code <> "-" GROUP BY po_code');
+            //   $query = DB::connection('mysql')->select('SELECT * FROM hospcode WHERE chwpart ="'.$province.'" AND amppart ="'.$amphur.'" AND tmbpart ="'.$id.'"');
+            //   $query= DB::connection('mysql')->table('thaiaddress')->where('chwpart',$province)->where('amppart',$amphur)->where('tmbpart',$id)->get();
+              $query= DB::connection('mysql')->table('hospcode')->where('chwpart',$province)->where('amppart',$amphur)->where('tmbpart',$id)->whereNotIn('po_code','<>',"-")->get();
+              // $output=' ';
+              $output='<option value="">--Choose--</option> ';
+              foreach ($query as $row){
+                  $output.= '<option value="'.$row->po_code.'">'.$row->po_code.'</option>'; 
+              } 
+              echo $output; 
+      }
 }
