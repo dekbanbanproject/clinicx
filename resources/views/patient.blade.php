@@ -83,7 +83,7 @@
                                                         @elseif($pname =='003')
                                                             <option value="1" selected>นาย</option> 
                                                         @else
-                                                            <option value="{{$item->prefix_id}}">{{$item->prefix_name}}</option> 
+                                                            
                                                         @endif
                                                    
                                                     @endforeach
