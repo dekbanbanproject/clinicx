@@ -75,7 +75,7 @@
                                                 <span class="input-group-text" id="addon-wrapping">คำนำหน้า</span> 
                                                 <select class="form-control input_new" id="pname" name="pname" style="width: 100%">
                                                     <option value="">-เลือก-</option>
-                                                    @foreach ($users_prefix as $item)
+                                                    {{-- @foreach ($users_prefix as $item) --}}
                                                         @if($pname =='001')
                                                             <option value="10" selected>ด.ช.</option> 
                                                         @elseif($pname =='002')
@@ -88,9 +88,8 @@
                                                             <option value="2" selected>นาง</option> 
                                                         @else
                                                             
-                                                        @endif
-                                                   
-                                                    @endforeach
+                                                        @endif                                                   
+                                                    {{-- @endforeach --}}
                                                 </select>
                                             </div>
                                         </div>
