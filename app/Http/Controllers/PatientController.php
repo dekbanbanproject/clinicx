@@ -83,7 +83,7 @@ class PatientController extends Controller
         $image           = @$image;
         $correlationId   = @$correlationId;
 
-        dd($pid);
+        // dd($pid);
 
         $data['thaiaddress_provine'] =  DB::connection('mysql')->select('SELECT chwpart,name from thaiaddress WHERE codetype="1"');
         $data['thaiaddress_amphur'] =  DB::connection('mysql')->select('SELECT amppart,name from thaiaddress WHERE codetype="2"');
