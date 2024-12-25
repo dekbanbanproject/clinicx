@@ -83,6 +83,8 @@
                                                         @elseif($pname =='003')
                                                             <option value="1" selected>นาย</option> 
                                                         @elseif($pname =='004')
+                                                            <option value="3" selected>นางสาว</option> 
+                                                        @elseif($pname =='005')
                                                             <option value="2" selected>นาง</option> 
                                                         @else
                                                             
