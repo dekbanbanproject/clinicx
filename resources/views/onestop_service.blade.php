@@ -272,6 +272,7 @@
                 var cc               = $('#CC').val();
 
                 alert(hn);
+                
                 Swal.fire({ position: "top-end",
                         title: 'ต้องการบันทึกข้อมูลใช่ไหม ?',
                         text: "You Warn Save Data!",
