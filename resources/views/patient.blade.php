@@ -223,161 +223,157 @@
                 </div>
             </div>
            
-        </div>
-        
-           
+        </div>                  
        
     </div>
 </div>
 @endsection
 @section('footer')
-<script>
-        patient_loadtable();            
+    <script>
+            patient_loadtable();            
 
-        function patient_loadtable() { 
-                var store_code = document.getElementById("store_code").value; 
-                // alert(wh_recieve_id);
-                var _token=$('input[name="_token"]').val();
-                $.ajax({
-                        url:"{{route('patient_loadtable')}}",
-                        method:"GET",
-                        data:{store_code:store_code,_token:_token},
-                        success:function(result){
-                            $('#getdata_show').html(result); 
-                        }
-                });                     
-        } 
-     $(document).ready(function() {
+            function patient_loadtable() { 
+                    var store_code = document.getElementById("store_code").value; 
+                    // alert(wh_recieve_id);
+                    var _token=$('input[name="_token"]').val();
+                    $.ajax({
+                            url:"{{route('patient_loadtable')}}",
+                            method:"GET",
+                            data:{store_code:store_code,_token:_token},
+                            success:function(result){
+                                $('#getdata_show').html(result); 
+                            }
+                    });                     
+            } 
+        $(document).ready(function() {
 
-        $("#myInput").on("keyup", function() {
-                var value = $(this).val().toLowerCase();
-                $("#myTable tr").filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            $("#myInput").on("keyup", function() {
+                    var value = $(this).val().toLowerCase();
+                    $("#myTable tr").filter(function() {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
                 });
-            });
 
-            $('select').select2();
-            $('#example').DataTable();
-            $('#example2').DataTable();
-            
-            $('#pname').select2({
-                placeholder: "--เลือก--",
-                allowClear: true
-            });
-            $('#datepicker').datepicker({
-                format: 'yyyy-mm-dd'
-            });
-            $('#datepicker2').datepicker({
-                format: 'yyyy-mm-dd'
-            });
-            $('#p4p_work_month').select2({
-                placeholder: "--เลือก--",
-                allowClear: true
-            });
-
-            $('#stamp').on('click', function(e) {
-                    if($(this).is(':checked',true))  
-                    {
-                        $(".sub_chk").prop('checked', true);  
-                    } else {  
-                        $(".sub_chk").prop('checked',false);  
-                    }  
-            }); 
-            $("#spinner-div").hide(); //Request is complete so hide spinner
-                                          
-           
-            $('#UpdateData').click(function() {
-                var pname           = $('#pname').val(); 
-                var fname              = $('#fname').val(); 
-                var lname        = $('#lname').val(); 
-                var pttype           = $('#pttype').val(); 
-                var cid    = $('#cid').val(); 
-                var tel    = $('#tel').val();  
-                var ban_no        = $('#ban_no').val();  
-                var ban_name        = $('#ban_name').val();  
-                var province        = $('#province').val();  
-                var ampher        = $('#ampher').val();  
-                var tumbon        = $('#tumbon').val();  
-                var poscode        = $('#poscode').val();  
+                $('select').select2();
+                $('#example').DataTable();
+                $('#example2').DataTable();
                 
-                        $.ajax({
-                            url: "{{ route('patient_save') }}",
-                            type: "POST",
-                            dataType: 'json',
-                            data: {pname,fname,lname,pttype,cid,tel,ban_no,ban_name,province,ampher,tumbon,poscode},
-                            success: function(data) {
-                                patient_loadtable(); 
-                                // $('#qty').val("");
-                                // $('#one_price').val("");
-                                // $('#pro_id').val("");
-                                if (data.status == 200) { 
-                                    Swal.fire({
-                                        position: "top-end",
-                                        icon: "success",
-                                        title: "Your work has been saved",
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                        });
-                                } else {
-                                    
-                                }
-                            },
-                        }); 
-            });  
-        });
+                $('#pname').select2({
+                    placeholder: "--เลือก--",
+                    allowClear: true
+                });
+                $('#datepicker').datepicker({
+                    format: 'yyyy-mm-dd'
+                });
+                $('#datepicker2').datepicker({
+                    format: 'yyyy-mm-dd'
+                });
+                $('#p4p_work_month').select2({
+                    placeholder: "--เลือก--",
+                    allowClear: true
+                });
 
-        //------------------------ จังหวัด ------------------
+                $('#stamp').on('click', function(e) {
+                        if($(this).is(':checked',true))  
+                        {
+                            $(".sub_chk").prop('checked', true);  
+                        } else {  
+                            $(".sub_chk").prop('checked',false);  
+                        }  
+                }); 
+                $("#spinner-div").hide(); //Request is complete so hide spinner
+                                            
+            
+                $('#UpdateData').click(function() {
+                    var pname           = $('#pname').val(); 
+                    var fname              = $('#fname').val(); 
+                    var lname        = $('#lname').val(); 
+                    var pttype           = $('#pttype').val(); 
+                    var cid    = $('#cid').val(); 
+                    var tel    = $('#tel').val();  
+                    var ban_no        = $('#ban_no').val();  
+                    var ban_name        = $('#ban_name').val();  
+                    var province        = $('#province').val();  
+                    var ampher        = $('#ampher').val();  
+                    var tumbon        = $('#tumbon').val();  
+                    var poscode        = $('#poscode').val();  
+                    
+                            $.ajax({
+                                url: "{{ route('patient_save') }}",
+                                type: "POST",
+                                dataType: 'json',
+                                data: {pname,fname,lname,pttype,cid,tel,ban_no,ban_name,province,ampher,tumbon,poscode},
+                                success: function(data) {
+                                    patient_loadtable(); 
+                                    // $('#qty').val("");
+                                    // $('#one_price').val("");
+                                    // $('#pro_id').val("");
+                                    if (data.status == 200) { 
+                                        Swal.fire({
+                                            position: "top-end",
+                                            icon: "success",
+                                            title: "Your work has been saved",
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                            });
+                                    } else {
+                                        
+                                    }
+                                },
+                            }); 
+                });  
+            });
 
-        $('.province').change(function(){
+            //------------------------ จังหวัด ------------------
+
+            $('.province').change(function(){
+                        if($(this).val()!=''){
+                        var select = $(this).val();
+                        var _token=$('input[name="_token"]').val();
+                        // alert(select);
+                            $.ajax({
+                                    url:"{{route('fecth.fetch_province')}}",
+                                    method:"GET",
+                                    data:{select:select,_token:_token},
+                                    success:function(result){
+                                        $('.amphur').html(result);
+                                    }
+                            }) 
+                        }        
+            });
+
+            $('.amphur').change(function(){
                     if($(this).val()!=''){
-                    var select = $(this).val();
+                    var select   = $(this).val();
+                    var province = $('#province').val();
                     var _token=$('input[name="_token"]').val();
                     // alert(select);
                         $.ajax({
-                                url:"{{route('fecth.fetch_province')}}",
+                                url:"{{route('fecth.fetch_amphur')}}",
                                 method:"GET",
-                                data:{select:select,_token:_token},
+                                data:{select:select,province:province,_token:_token},
                                 success:function(result){
-                                    $('.amphur').html(result);
+                                $('.tumbons').html(result);
                                 }
                         }) 
                     }        
-        });
-
-        $('.amphur').change(function(){
-                if($(this).val()!=''){
-                var select   = $(this).val();
-                var province = $('#province').val();
-                var _token=$('input[name="_token"]').val();
-                // alert(select);
-                    $.ajax({
-                            url:"{{route('fecth.fetch_amphur')}}",
-                            method:"GET",
-                            data:{select:select,province:province,_token:_token},
-                            success:function(result){
-                            $('.tumbons').html(result);
-                            }
-                    }) 
-                }        
-        });
-        $('.tumbons').change(function(){
-                if($(this).val()!=''){
-                var select   = $(this).val();
-                var amphur   = $('#amphur').val();
-                var province = $('#province').val();
-                var _token=$('input[name="_token"]').val();
-                // alert(select);
-                    $.ajax({
-                            url:"{{route('fecth.fetch_tumbon')}}",
-                            method:"GET",
-                            data:{select:select,province:province,amphur:amphur,_token:_token},
-                            success:function(result){
-                            $('.po_code').html(result);
-                            }
-                    }) 
-                }        
-        });
-</script>
-
-
+            });
+            $('.tumbons').change(function(){
+                    if($(this).val()!=''){
+                    var select   = $(this).val();
+                    var amphur   = $('#amphur').val();
+                    var province = $('#province').val();
+                    var _token=$('input[name="_token"]').val();
+                    // alert(select);
+                        $.ajax({
+                                url:"{{route('fecth.fetch_tumbon')}}",
+                                method:"GET",
+                                data:{select:select,province:province,amphur:amphur,_token:_token},
+                                success:function(result){
+                                $('.po_code').html(result);
+                                }
+                        }) 
+                    }        
+            });
+    </script>
 @endsection
