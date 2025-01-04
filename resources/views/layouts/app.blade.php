@@ -78,13 +78,13 @@
         border:solid 1px #0583cc;
     }
     .card_prs_2b{
-        border-radius: 0em 0em 2em 2em;
+        border-radius: 0em 0em 1em 1em;
         box-shadow: 0 0 15px rgb(124, 225, 250);
         /* border-color: #0583cc */
         border:solid 1px #0583cc;
     }
     .card_prs_4{
-        border-radius: 2em 2em 2em 2em;
+        border-radius: 1em 1em 1em 1em;
         box-shadow: 0 0 15px rgb(124, 225, 250);
         /* border-color: #0583cc */
         border:solid 1px #0583cc;
