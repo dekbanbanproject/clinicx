@@ -181,6 +181,8 @@ class PatientController extends Controller
         $data['datefull']           = date('Y-m-d H:m:s');
         $months                     = date('m');
         $data['monthsnew']          = substr($months,1,2);  
+        $data['onestop']            =  DB::connection('mysql')->select('SELECT * FROM onestop');
+        $data['users']              =  DB::connection('mysql')->select('SELECT * FROM users');
 
         return view('onestop_service', $data,[
             'startdate'   => $startdate,

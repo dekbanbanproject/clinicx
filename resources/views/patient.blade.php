@@ -75,8 +75,9 @@
                                                 <span class="input-group-text" id="addon-wrapping">คำนำหน้า</span> 
                                                 <select class="form-control input_new" id="pname" name="pname" style="width: 100%">
                                                     <option value="">-เลือก-</option>
-                                                    {{-- @foreach ($users_prefix as $item) --}}
-                                                        @if($pname =='001')
+                                                    @foreach ($users_prefix as $item)
+                                                    <option value="{{$item->prefix_id}}">{{$item->prefix_name}}</option> 
+                                                        {{-- @if($pname =='001')
                                                             <option value="10" selected>ด.ช.</option> 
                                                         @elseif($pname =='002')
                                                             <option value="11" selected>ด.ญ.</option> 
@@ -90,8 +91,8 @@
                                                         @foreach ($users_prefix as $item)
                                                             <option value="{{$item->prefix_id}}">{{$item->prefix_name}}</option> 
                                                         @endforeach 
-                                                        @endif                                                   
-                                                    {{-- @endforeach --}}
+                                                        @endif  --}}
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -143,7 +144,7 @@
                                             <div class="input-group flex-nowrap">
                                                 <span class="input-group-text" id="addon-wrapping">หมู่บ้าน</span>
                                                 <input type="text" class="form-control input_new" id="ban_name" name="ban_name" placeholder="" aria-label="หมู่บ้าน" aria-describedby="addon-wrapping">
-                                                </div>
+                                            </div>
                                         </div> 
                                         <div class="col-md-4"> 
                                             <div class="input-group flex-nowrap">
