@@ -19,8 +19,8 @@
                     <div class="row">
                         <div class="col-md-2">{{ __('One Stop Service') }}</div>
                         <div class="col"></div>
-                        <div class="col-md-2">                           
-                            <select name="hn_search" id="hn_search" class="form-control" style="width: 100%">
+                        <div class="col-md-3">                           
+                            <select name="hn_search" id="hn_search" class="form-control" style="width: 100%" onchange="Hn_detail()">
                                 <option value="">ค้นหา HN</option>
                                 @foreach ($users as $item2)                               
                                     <option value="{{$item2->id}}">{{$item2->hn}} || {{$item2->fname}}  {{$item2->lname}}</option>                                
@@ -41,25 +41,25 @@
                             <div class="col-md-3">
                                 <div class="input-group flex-nowrap">
                                     <span class="input-group-text" id="addon-wrapping">HN</span>
-                                    <input type="text" class="form-control input_new" id="hn" name="hn" placeholder="" aria-label="HN" aria-describedby="addon-wrapping">
+                                    <input type="text" class="form-control input_new" id="HN" name="hn" placeholder="" aria-label="HN" aria-describedby="addon-wrapping">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="input-group flex-nowrap">
                                     <span class="input-group-text" id="addon-wrapping">ชื่อ</span>
-                                    <input type="text" class="form-control input_new" id="fname" name="fname" placeholder="" aria-label="ชื่อ" aria-describedby="addon-wrapping">
+                                    <input type="text" class="form-control input_new" id="FNAME" name="fname" placeholder="" aria-label="ชื่อ" aria-describedby="addon-wrapping">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="input-group flex-nowrap">
                                     <span class="input-group-text" id="addon-wrapping">นามสกุล</span>
-                                    <input type="text" class="form-control input_new" id="lname" name="lname" placeholder="" aria-label="นามสกุล" aria-describedby="addon-wrapping">
+                                    <input type="text" class="form-control input_new" id="LNAME" name="lname" placeholder="" aria-label="นามสกุล" aria-describedby="addon-wrapping">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="input-group flex-nowrap">
                                     <span class="input-group-text" id="addon-wrapping">CID</span>
-                                    <input type="text" class="form-control input_new" id="cid" name="cid" placeholder="" aria-label="CID" aria-describedby="addon-wrapping">
+                                    <input type="text" class="form-control input_new" id="CID" name="cid" placeholder="" aria-label="CID" aria-describedby="addon-wrapping">
                                 </div>
                             </div>
                         </div>
@@ -88,7 +88,24 @@
 @endsection
 @section('footer')
     <script>
-             
+        function Hn_detail() {
+            var hn_search = document.getElementById("hn_search").value;
+            // alert(hn_search);
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                    url: "{{url('onestop_serviceshow')}}",
+                    method: "GET",
+                    data: {hn_search: hn_search,_token: _token
+                    },
+                    success: function (result) {
+
+                        // $('#show_detail').html(result);
+                        $('#HN').val(result.data_show.hn)
+                        $('#FNAME').val(result.data_show.fname)
+                        $('#LNAME').val(result.data_show.lname)
+                    }
+                })
+        }
         $(document).ready(function() {
 
             $("#myInput").on("keyup", function() {
@@ -168,7 +185,8 @@
                                 $('.po_code').html(result);
                                 }
                         }) 
-                    }        
-            });
+                    }   
+                         
+        });
     </script>
 @endsection

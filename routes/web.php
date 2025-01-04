@@ -55,3 +55,6 @@ Route::match(['get', 'post'], 'fetch_province', [App\Http\Controllers\PatientCon
 Route::match(['get', 'post'], 'fetch_amphur', [App\Http\Controllers\PatientController::class, 'fetch_amphur'])->name('fecth.fetch_amphur');
 Route::match(['get', 'post'], 'fetch_tumbon', [App\Http\Controllers\PatientController::class, 'fetch_tumbon'])->name('fecth.fetch_tumbon');
 Route::match(['get', 'post'], 'fetch_pocode', [App\Http\Controllers\PatientController::class, 'fetch_pocode'])->name('fecth.fetch_pocode');
+
+
+Route::match(['get', 'post'], 'onestop_serviceshow', [App\Http\Controllers\OnestopController::class, 'onestop_serviceshow'])->name('fecth.onestop_serviceshow');
