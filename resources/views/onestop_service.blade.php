@@ -28,7 +28,7 @@
                             </select>
                         </div>
                         <div class="col-md-2 text-start">  
-                            <button type="button" id="UpdateData" class="ladda-button me-2 btn-pill btn btn-success card_prs_4" >
+                            <button type="button" id="InsertData" class="ladda-button me-2 btn-pill btn btn-success card_prs_4" >
                                 <img src="{{ asset('images/Savewhit.png') }}" class="me-2 ms-2" height="18px" width="18px">
                                บันทึก
                            </button>
@@ -257,7 +257,7 @@
                         }) 
             }   
 
-            $('#UpdateData').click(function() {
+            $('#InsertData').click(function() {
                 var hn               = $('#HN').val();
                 var fname            = $('#FNAME').val();
                 var lname            = $('#LNAME').val();
@@ -272,7 +272,7 @@
                 var cc               = $('#CC').val();
 
                 alert(hn);
-                
+
                 Swal.fire({ position: "top-end",
                         title: 'ต้องการบันทึกข้อมูลใช่ไหม ?',
                         text: "You Warn Save Data!",
