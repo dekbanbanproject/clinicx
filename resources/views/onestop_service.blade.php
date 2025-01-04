@@ -270,7 +270,7 @@
                 var vsttime          = $('#VSTTIME').val();
                 var congenital       = $('#CONGENITAL').val();
                 var cc               = $('#CC').val();
-
+                
                 alert(hn);
 
                 Swal.fire({ position: "top-end",
