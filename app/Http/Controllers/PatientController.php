@@ -171,7 +171,7 @@ class PatientController extends Controller
         $startdate  = $request->datepicker;
         $enddate    = $request->datepicker2;
       
-        $data['date_now']          = date('Y-m-d');
+        $data['vstdate']            = date('Y-m-d');
   
         $yy1                        = date('Y') + 543;
         $yy2                        = date('Y') + 542;
@@ -183,6 +183,12 @@ class PatientController extends Controller
         $data['monthsnew']          = substr($months,1,2);  
         $data['onestop']            =  DB::connection('mysql')->select('SELECT * FROM onestop');
         $data['users']              =  DB::connection('mysql')->select('SELECT * FROM users');
+
+        $year                        = substr(date("Y"),2) + 43;
+        $mounts                      = date('m');
+        $day                         = date('d');
+        $time                        = date("His");
+        $data['lot_no']              = $year.''.$mounts.''.$day.''.$time;
 
         return view('onestop_service', $data,[
             'startdate'   => $startdate,

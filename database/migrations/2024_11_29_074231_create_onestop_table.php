@@ -23,6 +23,12 @@ return new class extends Migration
                 $table->string('dchdate')->nullable();   //วันที่               
                 $table->Time('dchtime')->nullable();//   เวลา  
 
+                $table->string('height')->nullable();//ส่วนสูง
+                $table->string('weight')->nullable();//น้ำหนัก
+                $table->string('pressure')->nullable();//ความดัน
+                $table->string('pulse')->nullable();//ชีพจร
+                $table->string('respiration')->nullable();//อัตราการหายใจ
+
                 $table->string('pdx')->nullable();// 
                 $table->string('pttype')->nullable();// 
                 $table->string('pttype_no')->nullable();//  

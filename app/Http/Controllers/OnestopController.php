@@ -279,7 +279,9 @@ class OnestopController extends Controller
     public function onestop_serviceshow(Request $request)
     {
         $hn                 =  $request->hn_search;
-        $data_show          = Onestop::where('hn',$hn)->get();
+        // dd($hn);
+        $data_show          = User::where('hn',$hn)->first();
+        // $data_show          = Onestop::where('hn',$hn)->first();
         // dd($data_show);
         // $i = 1;
         // foreach ($data_show as $key => $value) {
