@@ -9,51 +9,17 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-<!-- Font Awesome -->
-{{-- <link href="{{ asset('assets/fontawesome/css/all.css') }}" rel="stylesheet">
-<link rel="shortcut icon" href="{{ asset('pkclaim/images/logo150.ico') }}">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link href="{{ asset('pkclaim/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
-<link href="{{ asset('pkclaim/libs/spectrum-colorpicker2/spectrum.min.css') }}" rel="stylesheet" type="text/css">
-<link href="{{ asset('pkclaim/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css') }}" rel="stylesheet">
-<!-- jquery.vectormap css -->
-<link href="{{ asset('pkclaim/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css') }}"
-    rel="stylesheet" type="text/css" />
-<!-- DataTables -->
-<link href="{{ asset('pkclaim/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet"
-    type="text/css" />
-<link href="{{ asset('pkclaim/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') }}" rel="stylesheet"
-    type="text/css" />
-<link href="{{ asset('pkclaim/libs/datatables.net-select-bs4/css//select.bootstrap4.min.css') }}" rel="stylesheet"
-    type="text/css" />
-<!-- Responsive datatable examples -->
-<link href="{{ asset('pkclaim/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}"
-    rel="stylesheet" type="text/css" />
-<!-- Bootstrap Css -->
-<link href="{{ asset('pkclaim/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
-<!-- Icons Css -->
-<link href="{{ asset('pkclaim/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
-<!-- App Css-->
-<link href="{{ asset('pkclaim/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" /> --}}
-
+    <title>{{ config('app.name', 'ClinicX') }}</title>
+  
+<link href="{{ asset('css/css53.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" /> 
+<script src="{{ asset('js/js53.min.js') }}"></script>
 <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
-    {{-- <link href="{{asset('assets/select2.min.css')}}" rel="stylesheet" /> --}}
-    {{-- <script src="{{asset('assets/select2.min.js')}}"></script> --}}
-
-    {{-- <link href="{{asset('dist/css/select2.min.css') }}" rel="stylesheet" />
-    <script src="{{asset('dist/js/select2.min.js') }}"></script> --}}
-      <!-- select2 -->
       <link rel="stylesheet" href="{{asset('asset/js/plugins/select2/css/select2.min.css')}}">
       <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-
-       
+   
 
 </head>
 <style>
