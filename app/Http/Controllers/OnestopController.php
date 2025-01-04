@@ -281,26 +281,41 @@ class OnestopController extends Controller
         $hn                 =  $request->hn_search;
         // dd($hn);
         $data_show          = User::where('hn',$hn)->first();
-        // $data_show          = Onestop::where('hn',$hn)->first();
-        // dd($data_show);
-        // $i = 1;
-        // foreach ($data_show as $key => $value) {
-          
-                // if ($value->hn != '') {
-                //     $output='
-                //         <input class="form-control" type="text" id="hn" name="hn"/>&nbsp;&nbsp;สี -'.$value->hn.'<br>
-                //     ';
-                //     echo $output; 
-                // }
-                // $hnshow   = $value->hn;
-
-        // }
+       
         return response()->json([
             'status'        => '200',
-            'data_show'    => $data_show,
-            // 'hnshow'       => $hnshow,
+            'data_show'    => $data_show, 
         ]);
 
+    }
+    public function onestop_service_save(Request $request)
+    {   
+        $year               = substr(date("Y"),2) + 43;
+        $mounts             = date('m');
+        $day                = date('d');
+        $time               = date("His");
+        $vn                 = $year.''.$mounts.''.$day.''.$time;
+          
+        Onestop::insert([
+                'vn'         => $vn,
+                'hn'         => $request->hn,
+                'fname'      => $request->fname,
+                'lname'      => $request->lname,
+                'cid'        => $request->cid,
+                'height'     => $request->height,
+                'weight'     => $request->weight,
+                'pressure'   => $request->pressure,
+                'pulse'      => $request->pulse,
+                'vstdate'    => $request->datepicker,
+                'vsttime'    => $request->vsttime,
+                'congenital' => $request->congenital,
+                'cc'         => $request->cc,  
+            ]);
+       
+        return response()->json([
+            'status'     => '200'
+        ]);
+        
     }
     
     

@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-2">
             <div class="card card_prs_4">
-                <div class="card-header">{{ __('วันที่') }}</div>
+                <div class="card-header" style="background-color: rgb(212, 253, 246)">{{ __('วันที่') }}</div>
 
                 <div class="card-body">
                      
@@ -15,7 +15,7 @@
         </div>
         <div class="col-md-10">
             <div class="card card_prs_4">
-                <div class="card-header"> 
+                <div class="card-header" style="background-color: rgb(212, 253, 246)"> 
                     <div class="row">
                         <div class="col-md-2">{{ __('One Stop Service') }}</div>
                         <div class="col"></div>
@@ -26,6 +26,12 @@
                                     <option value="{{$item2->hn}}">{{$item2->hn}} || {{$item2->fname}}  {{$item2->lname}}</option>                                
                                 @endforeach 
                             </select>
+                        </div>
+                        <div class="col-md-2 text-start">  
+                            <button type="button" id="UpdateData" class="ladda-button me-2 btn-pill btn btn-success card_prs_4" >
+                                <img src="{{ asset('images/Savewhit.png') }}" class="me-2 ms-2" height="18px" width="18px">
+                               บันทึก
+                           </button>
                         </div>
                     </div>
 
@@ -65,7 +71,7 @@
                            
                         </div>
 
-                        <hr>
+                        <hr style="color:rgb(255, 23, 81)">
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="input-group flex-nowrap">
@@ -249,7 +255,71 @@
                                 $('.po_code').html(result);
                                 }
                         }) 
-                    }   
+            }   
+
+            $('#UpdateData').click(function() {
+                var hn               = $('#HN').val();
+                var fname            = $('#FNAME').val();
+                var lname            = $('#LNAME').val();
+                var cid              = $('#CID').val();
+                var height           = $('#HEIGHT').val();
+                var weight           = $('#WEIGHT').val();
+                var pressure         = $('#PRESSURE').val();
+                var pulse            = $('#PULSE').val();
+                var datepicker       = $('#datepicker').val();
+                var vsttime          = $('#VSTTIME').val();
+                var congenital       = $('#CONGENITAL').val();
+                var cc               = $('#CC').val();
+
+                Swal.fire({ position: "top-end",
+                        title: 'ต้องการบันทึกข้อมูลใช่ไหม ?',
+                        text: "You Warn Save Data!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, Save it!'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $("#overlay").fadeIn(300);　
+                                $("#spinner").show(); //Load button clicked show spinner
+
+                                $.ajax({
+                                    url: "{{ route('one.onestop_service_save') }}",
+                                    type: "POST",
+                                    dataType: 'json',
+                                    data: {hn,fname,lname,cid,height,weight,pressure,pulse,datepicker,vsttime,congenital,cc},
+                                    success: function(data) {
+                                        if (data.status == 200) {
+                                            Swal.fire({ position: "top-end",
+                                                title: 'บันทึกข้อมูลสำเร็จ',
+                                                text: "You Save data success",
+                                                icon: 'success',
+                                                showCancelButton: false,
+                                                confirmButtonColor: '#06D177',
+                                                confirmButtonText: 'เรียบร้อย'
+                                            }).then((result) => {
+                                                if (result
+                                                    .isConfirmed) {
+                                                    console.log(
+                                                        data);
+                                                    window.location.reload();
+                                                    // window.location="{{url('wh_sub_main_rp')}}";
+                                                    $('#spinner').hide();//Request is complete so hide spinner
+                                                        setTimeout(function(){
+                                                            $("#overlay").fadeOut(300);
+                                                        },500);
+                                                }
+                                            })
+                                        } else {
+
+                                        }
+                                    },
+                                });
+
+                            }
+                })
+            });
                          
         });
     </script>
