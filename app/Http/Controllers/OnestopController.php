@@ -281,11 +281,48 @@ class OnestopController extends Controller
         $hn                 =  $request->hn_search;
         // dd($hn);
         $data_show          = User::where('hn',$hn)->first();
-       
+        $data_one           = Onestop::where('hn',$hn)->get();
+        // dd($data_one);
         return response()->json([
             'status'        => '200',
-            'data_show'    => $data_show, 
+            'data_show'     => $data_show, 
+            'data_one'      => $data_one, 
         ]);
+    }
+    // public function onestop_vstdate(Request $request)
+    // {
+    //     $hn                 =  $request->hn_search; 
+    //     // $data_show          = User::where('hn',$hn)->first();
+    //     $data_one           = Onestop::where('hn',$hn)->get();
+    //     // dd($data_one);
+    //     return response()->json([
+    //         'status'        => '200', 
+    //         'data_one'      => $data_one, 
+    //     ]);
+    // }
+    public function onestop_vstdate(Request $request)
+    {
+        $hn                 =  $request->hn_search;         
+        $data_sub     = DB::select('SELECT * FROM onestop WHERE hn = "'.$hn.'" GROUP BY onestop_id ORDER BY onestop_id ASC');
+
+        $output = '
+        <table class="table table-sm table-bordered table-striped" style="width: 100%;">
+            <thead>
+                <tr>                  
+                    <td style="text-align: center;border: 1px solid black;font-size: 13px;color:#6495ED;" >วันที่มารับบริการ</td> 
+                </tr>
+            </thead>
+            <tbody id="myTable">';
+                foreach ($data_sub as $item) { 
+
+                $output .= '
+                    <tr height="20">
+                        <td class="text-font" style="border: 1px solid black;padding-left:10px;font-size: 13px;" align="center" >' . $item->vstdate . '</td>
+                    </tr>';
+                }
+            $output .= '</tbody>
+            </table>';
+        echo $output;
 
     }
     public function onestop_service_save(Request $request)
@@ -299,9 +336,9 @@ class OnestopController extends Controller
         Onestop::insert([
                 'vn'         => $vn,
                 'hn'         => $request->hn,
-                'fname'      => $request->fname,
-                'lname'      => $request->lname,
-                'cid'        => $request->cid,
+                // 'fname'      => $request->fname,
+                // 'lname'      => $request->lname,
+                // 'cid'        => $request->cid,
                 'height'     => $request->height,
                 'weight'     => $request->weight,
                 'pressure'   => $request->pressure,

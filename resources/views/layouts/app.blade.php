@@ -19,6 +19,16 @@
 <link href="{{ asset('pkclaim/libs/spectrum-colorpicker2/spectrum.min.css') }}" rel="stylesheet" type="text/css">
 <link href="{{ asset('pkclaim/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css') }}" rel="stylesheet">
  
+<!-- DataTables -->
+<link href="{{ asset('pkclaim/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet"
+    type="text/css" />
+<link href="{{ asset('pkclaim/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') }}" rel="stylesheet"
+    type="text/css" />
+<link href="{{ asset('pkclaim/libs/datatables.net-select-bs4/css//select.bootstrap4.min.css') }}" rel="stylesheet"
+    type="text/css" />
+<!-- Responsive datatable examples -->
+<link href="{{ asset('pkclaim/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}"
+    rel="stylesheet" type="text/css" />
 
     <link href="{{ asset('css/css53.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" /> 
     <script src="{{ asset('js/jss.min.js') }}"></script>
@@ -181,11 +191,12 @@
         </main>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+   
 
     <!-- JAVASCRIPT -->  
-  {{-- <script src="{{ asset('pkclaim/libs/jquery/jquery.min.js') }}"></script> --}}
+  <script src="{{ asset('pkclaim/libs/jquery/jquery.min.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
   <script src="{{ asset('pkclaim/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script> 
   <script src="{{ asset('pkclaim/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
   <script src="{{ asset('pkclaim/libs/spectrum-colorpicker2/spectrum.min.js') }}"></script>
@@ -197,6 +208,28 @@
   integrity="sha512-cp+S0Bkyv7xKBSbmjJR0K7va0cor7vHYhETzm2Jy//ZTQDUvugH/byC4eWuTii9o5HN9msulx2zqhEXWau20Dg=="
   crossorigin="anonymous" referrerpolicy="no-referrer"></script>
  
+   <!-- Required datatable js -->
+   <script src="{{ asset('pkclaim/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+   <script src="{{ asset('pkclaim/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+   <!-- Buttons examples -->
+   <script src="{{ asset('pkclaim/libs/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
+   <script src="{{ asset('pkclaim/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js') }}"></script>
+   <script src="{{ asset('pkclaim/libs/jszip/jszip.min.js') }}"></script>
+   <script src="{{ asset('pkclaim/libs/pdfmake/build/pdfmake.min.js') }}"></script>
+   <script src="{{ asset('pkclaim/libs/pdfmake/build/vfs_fonts.js') }}"></script>
+   <script src="{{ asset('pkclaim/libs/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
+   <script src="{{ asset('pkclaim/libs/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
+   <script src="{{ asset('pkclaim/libs/datatables.net-buttons/js/buttons.colVis.min.js') }}"></script>
+   <script src="{{ asset('pkclaim/libs/datatables.net-keytable/js/dataTables.keyTable.min.js') }}"></script>
+   <script src="{{ asset('pkclaim/libs/datatables.net-select/js/dataTables.select.min.js') }}"></script>
+   <!-- Responsive examples -->
+   <script src="{{ asset('pkclaim/libs/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
+   <script src="{{ asset('pkclaim/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') }}"></script>
+   <!-- Datatable init js -->
+   <script src="{{ asset('pkclaim/js/pages/datatables.init.js') }}"></script>
+   <script src="{{ asset('pkclaim/libs/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js') }}"></script>
+   <script src="{{ asset('pkclaim/libs/twitter-bootstrap-wizard/prettify.js') }}"></script>
+   <script src="{{ asset('pkclaim/js/pages/form-wizard.init.js') }}"></script>
  
   <!-- App js -->
   {{-- <script src="{{ asset('pkclaim/js/app.js') }}"></script> --}}
@@ -206,14 +239,80 @@
   <script src="{{ asset('js/bootstrap-timepicker.js') }}"></script>
 
   @yield('footer')
+
   <script type="text/javascript">
     $(document).ready(function() {
        
-
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
+        });
+
+        $('#InsertData').click(function() {
+                var hn               = $('#HN').val();
+                var fname            = $('#FNAME').val();
+                var lname            = $('#LNAME').val();
+                var cid              = $('#CID').val();
+                var height           = $('#HEIGHT').val();
+                var weight           = $('#WEIGHT').val();
+                var pressure         = $('#PRESSURE').val();
+                var pulse            = $('#PULSE').val();
+                var datepicker       = $('#datepicker').val();
+                var vsttime          = $('#VSTTIME').val();
+                var congenital       = $('#CONGENITAL').val();
+                var cc               = $('#CC').val();
+                
+                // alert(hn);
+
+                Swal.fire({ position: "top-end",
+                        title: 'ต้องการบันทึกข้อมูลใช่ไหม ?',
+                        text: "You Warn Save Data!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, Save it!'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $("#overlay").fadeIn(300);　
+                                $("#spinner").show(); //Load button clicked show spinner
+
+                                $.ajax({
+                                    url: "{{ route('one.onestop_service_save') }}",
+                                    type: "POST",
+                                    dataType: 'json',
+                                    data: {hn,fname,lname,cid,height,weight,pressure,pulse,datepicker,vsttime,congenital,cc},
+                                    success: function(data) {
+                                        if (data.status == 200) {
+                                            Swal.fire({ position: "top-end",
+                                                title: 'บันทึกข้อมูลสำเร็จ',
+                                                text: "You Save data success",
+                                                icon: 'success',
+                                                showCancelButton: false,
+                                                confirmButtonColor: '#06D177',
+                                                confirmButtonText: 'เรียบร้อย'
+                                            }).then((result) => {
+                                                if (result
+                                                    .isConfirmed) {
+                                                    console.log(
+                                                        data);
+                                                    window.location.reload();
+                                                    // window.location="{{url('wh_sub_main_rp')}}";
+                                                    $('#spinner').hide();//Request is complete so hide spinner
+                                                        setTimeout(function(){
+                                                            $("#overlay").fadeOut(300);
+                                                        },500);
+                                                }
+                                            })
+                                        } else {
+
+                                        }
+                                    },
+                                });
+
+                            }
+                })
         });
         
 

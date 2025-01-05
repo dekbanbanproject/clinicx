@@ -58,4 +58,5 @@ Route::match(['get', 'post'], 'fetch_pocode', [App\Http\Controllers\PatientContr
 
 
 Route::match(['get', 'post'], 'onestop_serviceshow', [App\Http\Controllers\OnestopController::class, 'onestop_serviceshow'])->name('one.onestop_serviceshow');
+Route::match(['get', 'post'], 'onestop_vstdate', [App\Http\Controllers\OnestopController::class, 'onestop_vstdate'])->name('one.onestop_vstdate');
 Route::match(['get', 'post'], 'onestop_service_save', [App\Http\Controllers\OnestopController::class, 'onestop_service_save'])->name('one.onestop_service_save');

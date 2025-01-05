@@ -32,9 +32,9 @@
                             <div class="col-xl-12">
                                 <div class="auth-form">
 									<div class="text-center mb-3">
-										<a href="index.html"><img src="images/logo-full.png" alt=""></a>
+										<a href=""><img src="images/Clinic.jpg" alt="" width="135px;" height="auto"></a>
 									</div>
-                                    <h4 class="text-center mb-4">Sign in your account</h4>
+                                    <h4 class="text-center mb-4">Sign in ClinicX</h4>
                                     <form method="POST" action="{{ route('login') }}">
                                         @csrf
                                         <div class="mb-3">
@@ -54,15 +54,15 @@
 												</div>
                                             </div>
                                             <div class="mb-3">
-                                                <a href="page-forgot-password.html">Forgot Password?</a>
+                                                <a href="">Forgot Password?</a>
                                             </div>
                                         </div>
                                         <div class="text-center">
-                                            <button type="submit" class="btn btn-primary btn-block">Sign Me In</button>
+                                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
                                         </div>
                                     </form>
                                     <div class="new-account mt-3">
-                                        <p>Don't have an account? <a class="text-primary" href="page-register.html">Sign up</a></p>
+                                        <p>Don't have an account? <a class="text-primary" href="">Sign up</a></p>
                                     </div>
                                 </div>
                             </div>
