@@ -331,7 +331,8 @@ class OnestopController extends Controller
         $mounts             = date('m');
         $day                = date('d');
         $time               = date("His");
-        $vn                 = $year.''.$mounts.''.$day.''.$time;
+        $ti                 = $request->vsttime;
+        $vn                 = $year.''.$mounts.''.$day.''.$ti;
           
         Onestop::insert([
                 'vn'         => $vn,
