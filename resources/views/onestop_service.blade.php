@@ -118,25 +118,7 @@
                                 </div>
                             </div>
                         </div>
-
-                        {{-- <div class="row">
-                            <div class="col-md-2">
-                                <div class="input-group flex-nowrap">
-                                    <span class="input-group-text" id="addon-wrapping" style="color:rgb(2, 80, 168)">วันที่</span>
-                                    <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
-                                        <input type="text" class="form-control-sm input_new" name="vstdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' style="font-size: 12px"
-                                            data-provide="datepicker" data-date-autoclose="true" autocomplete="off" data-date-language="th-th" value="{{ $vstdate }}" style="color:rgb(6, 152, 236);font-size:14px;" required />
-                                    </div>                                 
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="input-group flex-nowrap">
-                                    <span class="input-group-text" id="addon-wrapping" style="color:rgb(2, 80, 168)">เวลา</span>
-                                    <input type="text" class="form-control input_new" id="VSTTIME" name="vsttime" placeholder="" aria-label="เวลา" aria-describedby="addon-wrapping" style="color:rgb(6, 152, 236);font-size:13px" value="{{$mm}}" readonly>
-                                </div>
-                            </div>
-                        </div>   --}}
-
+ 
                         <div class="row mt-2">
                             <div class="col-md-4">
                                 <div class="input-group flex-nowrap">
@@ -155,8 +137,7 @@
                                     <span class="input-group-text" id="addon-wrapping" style="color:rgb(2, 80, 168)">อัตราการหายใจ</span>
                                     <input type="text" class="form-control input_new" id="RESPIRATION" name="respiration" placeholder="" aria-label="อัตราการหายใจ" aria-describedby="addon-wrapping" style="color:rgb(6, 152, 236);font-size:13px">
                                 </div>
-                            </div> 
-                            
+                            </div>                             
                         </div>
                         <div class="row mt-2">
                             <div class="col-md-12">
