@@ -163,118 +163,6 @@ date_default_timezone_set("Asia/Bangkok");
 class OnestopController extends Controller
  {
     
-    public function account_401_claim_detail(Request $request,$months,$year)
-    {
-        $datenow = date('Y-m-d');
-        $startdate = $request->startdate;
-        $enddate = $request->enddate;
-        // dd($id);
-        $data['users'] = User::get();
-
-        $data = DB::select('
-        SELECT *
-            from acc_debtor
-            WHERE month(vstdate) = "'.$months.'" AND year(vstdate) = "'.$year.'" AND active_claim = "Y"
-            GROUP BY vn
-        ');
-        // WHERE month(U1.vstdate) = "'.$months.'" and year(U1.vstdate) = "'.$year.'"
-        return view('account_401.account_401_claim_detail', $data, [ 
-            'data'          =>     $data,
-            'startdate'     =>     $startdate,
-            'enddate'       =>     $enddate
-        ]);
-    } 
-    
-    public function account_401_checksit(Request $request)
-    {
-        $datestart = $request->datestart;
-        $dateend   = $request->dateend;
-        $date      = date('Y-m-d');
-        $id        = $request->ids;
-        // $data_sitss = DB::connection('mysql')->select('SELECT vn,an,cid,vstdate,dchdate FROM acc_debtor WHERE account_code="1102050101.401" AND stamp = "N" GROUP BY vn');
-        $data_sitss = Acc_debtor::whereIn('acc_debtor_id',explode(",",$id))->get();
-        $token_data = DB::connection('mysql10')->select('SELECT * FROM nhso_token ORDER BY update_datetime desc limit 1');
-        foreach ($token_data as $key => $value) { 
-            $cid_    = $value->cid;
-            $token_  = $value->token;
-        }
-        foreach ($data_sitss as $key => $item) {
-            $pids = $item->cid;
-            $vn   = $item->vn; 
-            $an   = $item->an; 
-                
-                    $client = new SoapClient("http://ucws.nhso.go.th/ucwstokenp1/UCWSTokenP1?wsdl",
-                        array("uri" => 'http://ucws.nhso.go.th/ucwstokenp1/UCWSTokenP1?xsd=1',"trace" => 1,"exceptions" => 0,"cache_wsdl" => 0)
-                        );
-                        $params = array(
-                            'sequence' => array(
-                                "user_person_id"   => "$cid_",
-                                "smctoken"         => "$token_",
-                                // "user_person_id" => "$value->cid",
-                                // "smctoken"       => "$value->token",
-                                "person_id"        => "$pids"
-                        )
-                    );
-                    $contents = $client->__soapCall('searchCurrentByPID',$params);
-                    foreach ($contents as $v) {
-                        @$status = $v->status ;
-                        @$maininscl = $v->maininscl;
-                        @$startdate = $v->startdate;
-                        @$hmain = $v->hmain ;
-                        @$subinscl = $v->subinscl ;
-                        @$person_id_nhso = $v->person_id;
-
-                        @$hmain_op = $v->hmain_op;  //"10978"
-                        @$hmain_op_name = $v->hmain_op_name;  //"รพ.ภูเขียวเฉลิมพระเกียรติ"
-                        @$hsub = $v->hsub;    //"04047"
-                        @$hsub_name = $v->hsub_name;   //"รพ.สต.แดงสว่าง"
-                        @$subinscl_name = $v->subinscl_name ; //"ช่วงอายุ 12-59 ปี"
-
-                        IF(@$maininscl == "" || @$maininscl == null || @$status == "003" ){ #ถ้าเป็นค่าว่างไม่ต้อง insert
-                            $date = date("Y-m-d");
-                          
-                            Acc_debtor::where('vn', $vn)
-                            ->update([
-                                'status'         => 'จำหน่าย/เสียชีวิต',
-                                'maininscl'      => @$maininscl,
-                                'pttype_spsch'   => @$subinscl,
-                                'hmain'          => @$hmain,
-                                'subinscl'       => @$subinscl, 
-                            ]);
-                            
-                        }elseif(@$maininscl !="" || @$subinscl !=""){
-                           Acc_debtor::where('vn', $vn)
-                           ->update([
-                               'status'         => @$status,
-                               'maininscl'      => @$maininscl,
-                               'pttype_spsch'   => @$subinscl,
-                               'hmain'          => @$hmain,
-                               'subinscl'       => @$subinscl,
-                           
-                           ]); 
-                                    
-                        }
-
-                    }
-           
-        }
-
-        return response()->json([
-
-           'status'    => '200'
-       ]);
-
-    }
-    
-    public function account_401_destroy_all(Request $request)
-    {
-        $id = $request->ids;
-        Acc_debtor::whereIn('acc_debtor_id',explode(",",$id))->delete();               
-        return response()->json([
-            'status'    => '200'
-        ]);
-    }
-   
     // ****************  *****************************
     public function onestop_serviceshow(Request $request)
     {
@@ -303,17 +191,7 @@ class OnestopController extends Controller
             'data_one'      => $data_one, 
         ]);
     }
-    // public function onestop_vstdate(Request $request)
-    // {
-    //     $hn                 =  $request->hn_search; 
-    //     // $data_show          = User::where('hn',$hn)->first();
-    //     $data_one           = Onestop::where('hn',$hn)->get();
-    //     // dd($data_one);
-    //     return response()->json([
-    //         'status'        => '200', 
-    //         'data_one'      => $data_one, 
-    //     ]);
-    // }
+    
     public function onestop_vstdate(Request $request)
     {
         $hn                 =  $request->hn_search;         

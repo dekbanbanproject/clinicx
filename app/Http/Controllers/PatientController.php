@@ -182,7 +182,7 @@ class PatientController extends Controller
         $months                     = date('m');
         $data['monthsnew']          = substr($months,1,2);  
         $data['onestop']            =  DB::connection('mysql')->select('SELECT * FROM onestop');
-        $data['users']              =  DB::connection('mysql')->select('SELECT * FROM users');
+        $data['users']              =  DB::connection('mysql')->select('SELECT * FROM users WHERE type="CUSTOMER"');
 
         $year                        = substr(date("Y"),2) + 43;
         $mounts                      = date('m');
