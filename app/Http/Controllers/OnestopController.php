@@ -332,7 +332,9 @@ class OnestopController extends Controller
         $day                = date('d');
         $time               = date("His");
         $ti                 = $request->vsttime;
-        $vn                 = $year.''.$mounts.''.$day.''.$ti;
+        $pattern_time = '/:/i';
+        $time_preg = preg_replace($pattern_time, '', $ti);
+        $vn                 = $year.''.$mounts.''.$day.''.$time_preg;
           
         Onestop::insert([
                 'vn'         => $vn,
