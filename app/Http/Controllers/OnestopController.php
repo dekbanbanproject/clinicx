@@ -289,6 +289,20 @@ class OnestopController extends Controller
             'data_one'      => $data_one, 
         ]);
     }
+    public function onestop_serviceshowseq(Request $request)
+    {
+        $onestop_id                 =  $request->onestop_id;
+        $hn                         =  $request->hn_search;
+        // dd($hn);
+        $data_show          = Onestop::where('onestop_id',$onestop_id)->first();
+        $data_one           = Onestop::where('hn',$hn)->get();
+        // dd($data_one);
+        return response()->json([
+            'status'        => '200',
+            'data_show'     => $data_show, 
+            'data_one'      => $data_one, 
+        ]);
+    }
     // public function onestop_vstdate(Request $request)
     // {
     //     $hn                 =  $request->hn_search; 
@@ -304,12 +318,12 @@ class OnestopController extends Controller
     {
         $hn                 =  $request->hn_search;         
         $data_sub     = DB::select('SELECT * FROM onestop WHERE hn = "'.$hn.'" GROUP BY onestop_id ORDER BY onestop_id ASC');
-
+        $count           = $request->get('count');
         $output = '
-        <table class="table table-sm table-bordered table-striped" style="width: 100%;">
+        <table class="table table-sm table-bordered" style="width: 100%;">
             <thead>
                 <tr>                  
-                    <td style="text-align: center;border: 1px solid black;font-size: 13px;color:#6495ED;" >วันที่มารับบริการ</td> 
+                    <td style="text-align: center;font-size: 13px;color:#6495ED;" >วันที่มารับบริการ</td> 
                 </tr>
             </thead>
             <tbody id="myTable">';
@@ -317,7 +331,9 @@ class OnestopController extends Controller
 
                 $output .= '
                     <tr height="20">
-                        <td class="text-font" style="border: 1px solid black;padding-left:10px;font-size: 13px;" align="center" >' . $item->vstdate . '</td>
+                        <td class="text-font" style="border: 0px solid black;" align="center" >
+                                <button type="button" class="btn btn-outline-primary btn-sm"  style="font-family: \'Kanit\', sans-serif; font-size: 13px;font-weight:normal;" onclick="selectsupreq('.$item->onestop_id.')">' . $item->vstdate . '</button>
+                        </td>
                     </tr>';
                 }
             $output .= '</tbody>
@@ -325,6 +341,8 @@ class OnestopController extends Controller
         echo $output;
 
     }
+    // <td class="text-font" style="padding-left:10px;font-size: 13px;" align="center" >' . $item->vstdate . '</td>
+
     public function onestop_service_save(Request $request)
     {   
         $year               = substr(date("Y"),2) + 43;
@@ -348,6 +366,7 @@ class OnestopController extends Controller
                 'pulse'      => $request->pulse,
                 'vstdate'    => $request->datepicker,
                 'vsttime'    => $request->vsttime,
+                'intolerance' => $request->intolerance,
                 'congenital' => $request->congenital,
                 'cc'         => $request->cc,  
             ]);

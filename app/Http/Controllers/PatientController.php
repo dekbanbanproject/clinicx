@@ -222,13 +222,13 @@ class PatientController extends Controller
                             
                             $output.=' 
                               <tr id="tr_'.$value->id.'">
-                                <td width="5%" class="text-center">'.$i++.'</td> 
-                                <td width="10%" class="text-center">'.$value->hn.'</td>
-                                <td width="10%" class="text-center">'.$value->cid.'</td>
-                                <td class="text-start">'.$value->fname.' - '.$value->lname.'</td>
-                                <td width="40%" class="text-start">'.$value->pttype.'</td>    
-                                 <td width="10%" class="text-center">'.$value->ban_name.'</td>  
-                                <td width="10%" class="text-center">'.$value->active.'</td>                                                 
+                                <td width="5%" class="text-center" style="font-size: 12px;">'.$i++.'</td> 
+                                <td width="10%" class="text-center" style="font-size: 12px;">'.$value->hn.'</td>
+                                <td width="10%" class="text-center" style="font-size: 12px;">'.$value->cid.'</td>
+                                <td class="text-start" style="font-size: 12px;">'.$value->fname.' - '.$value->lname.'</td>
+                                <td width="40%" class="text-start" style="font-size: 12px;">'.$value->pttype.'</td>    
+                                 <td width="10%" class="text-center" style="font-size: 12px;">'.$value->ban_name.'</td>  
+                                <td width="10%" class="text-center" style="font-size: 12px;">'.$value->active.'</td>                                                 
                             </tr>';
                         }
                     

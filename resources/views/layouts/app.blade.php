@@ -260,6 +260,7 @@
                 var pulse            = $('#PULSE').val();
                 var datepicker       = $('#datepicker').val();
                 var vsttime          = $('#VSTTIME').val();
+                var intolerance      = $('#INTOLERANCE').val();
                 var congenital       = $('#CONGENITAL').val();
                 var cc               = $('#CC').val();
                 
@@ -282,7 +283,7 @@
                                     url: "{{ route('one.onestop_service_save') }}",
                                     type: "POST",
                                     dataType: 'json',
-                                    data: {hn,fname,lname,cid,height,weight,pressure,pulse,datepicker,vsttime,congenital,cc},
+                                    data: {hn,fname,lname,cid,height,weight,pressure,pulse,datepicker,vsttime,intolerance,congenital,cc},
                                     success: function(data) {
                                         if (data.status == 200) {
                                             Swal.fire({ position: "top-end",

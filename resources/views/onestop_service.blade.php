@@ -32,8 +32,8 @@
                             </select>
                         </div>
                         <div class="col-md-2 text-start">  
-                            <button type="button" id="InsertData" class="ladda-button me-2 btn-pill btn btn-success card_prs_4" >
-                                <img src="{{ asset('images/Savewhit.png') }}" class="me-2 ms-2" height="18px" width="18px">
+                            <button type="button" id="InsertData" class="ladda-button me-2 btn-pill btn btn-sm btn-success card_prs_4" >
+                                <img src="{{ asset('images/Savewhit.png') }}" class="me-2 ms-2" height="15px" width="15px">
                                บันทึก
                            </button>
                         </div>
@@ -51,25 +51,25 @@
                             <div class="col-md-2">
                                 <div class="input-group flex-nowrap">
                                     <span class="input-group-text" id="addon-wrapping" style="color:rgb(2, 80, 168)">HN</span>
-                                    <input type="text" class="form-control input_new" id="HN" name="hn" placeholder="" aria-label="HN" aria-describedby="addon-wrapping" style="color:rgb(6, 152, 236)">
+                                    <input type="text" class="form-control input_new" id="HN" name="hn" placeholder="" aria-label="HN" aria-describedby="addon-wrapping" style="color:rgb(6, 152, 236);font-size:13px">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="input-group flex-nowrap">
                                     <span class="input-group-text" id="addon-wrapping" style="color:rgb(2, 80, 168)">ชื่อ</span>
-                                    <input type="text" class="form-control input_new" id="FNAME" name="fname" placeholder="" aria-label="ชื่อ" aria-describedby="addon-wrapping" style="color:rgb(6, 152, 236)">
+                                    <input type="text" class="form-control input_new" id="FNAME" name="fname" placeholder="" aria-label="ชื่อ" aria-describedby="addon-wrapping" style="color:rgb(6, 152, 236);font-size:13px">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="input-group flex-nowrap">
                                     <span class="input-group-text" id="addon-wrapping" style="color:rgb(2, 80, 168)">นามสกุล</span>
-                                    <input type="text" class="form-control input_new" id="LNAME" name="lname" placeholder="" aria-label="นามสกุล" aria-describedby="addon-wrapping" style="color:rgb(6, 152, 236)">
+                                    <input type="text" class="form-control input_new" id="LNAME" name="lname" placeholder="" aria-label="นามสกุล" aria-describedby="addon-wrapping" style="color:rgb(6, 152, 236);font-size:13px">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="input-group flex-nowrap">
                                     <span class="input-group-text" id="addon-wrapping" style="color:rgb(2, 80, 168)">CID</span>
-                                    <input type="text" class="form-control input_new" id="CID" name="cid" placeholder="" aria-label="CID" aria-describedby="addon-wrapping" style="color:rgb(6, 152, 236)">
+                                    <input type="text" class="form-control input_new" id="CID" name="cid" placeholder="" aria-label="CID" aria-describedby="addon-wrapping" style="color:rgb(6, 152, 236);font-size:13px">
                                 </div>
                             </div>
                            
@@ -81,25 +81,25 @@
                             <div class="col-md-2">
                                 <div class="input-group flex-nowrap">
                                     <span class="input-group-text" id="addon-wrapping" style="color:rgb(2, 80, 168)">ส่วนสูง</span>
-                                    <input type="text" class="form-control input_new" id="HEIGHT" name="height" placeholder="" aria-label="ส่วนสูง" aria-describedby="addon-wrapping" style="color:rgb(6, 152, 236)">
+                                    <input type="text" class="form-control input_new" id="HEIGHT" name="height" placeholder="" aria-label="ส่วนสูง" aria-describedby="addon-wrapping" style="color:rgb(6, 152, 236);font-size:13px">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="input-group flex-nowrap">
                                     <span class="input-group-text" id="addon-wrapping" style="color:rgb(2, 80, 168)">น้ำหนัก</span>
-                                    <input type="text" class="form-control input_new" id="WEIGHT" name="weight" placeholder="" aria-label="น้ำหนัก" aria-describedby="addon-wrapping" style="color:rgb(6, 152, 236)">
+                                    <input type="text" class="form-control input_new" id="WEIGHT" name="weight" placeholder="" aria-label="น้ำหนัก" aria-describedby="addon-wrapping" style="color:rgb(6, 152, 236);font-size:13px">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="input-group flex-nowrap">
                                     <span class="input-group-text" id="addon-wrapping" style="color:rgb(2, 80, 168)">ความดัน</span>
-                                    <input type="text" class="form-control input_new" id="PRESSURE" name="pressure" placeholder="" aria-label="ความดัน" aria-describedby="addon-wrapping" style="color:rgb(6, 152, 236)">
+                                    <input type="text" class="form-control input_new" id="PRESSURE" name="pressure" placeholder="" aria-label="ความดัน" aria-describedby="addon-wrapping" style="color:rgb(6, 152, 236);font-size:13px">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="input-group flex-nowrap">
                                     <span class="input-group-text" id="addon-wrapping" style="color:rgb(2, 80, 168)">ชีพจร</span>
-                                    <input type="text" class="form-control input_new" id="PULSE" name="pulse" placeholder="" aria-label="ชีพจร" aria-describedby="addon-wrapping" style="color:rgb(6, 152, 236)">
+                                    <input type="text" class="form-control input_new" id="PULSE" name="pulse" placeholder="" aria-label="ชีพจร" aria-describedby="addon-wrapping" style="color:rgb(6, 152, 236);font-size:13px">
                                 </div>
                             </div>
                             <div class="col-md-2">
@@ -107,7 +107,7 @@
                                     <span class="input-group-text" id="addon-wrapping" style="color:rgb(2, 80, 168)">วันที่</span>
                                     <div class="input-daterange input-group" id="datepicker1" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker1'>
                                         <input type="text" class="form-control-sm input_new" name="vstdate" id="datepicker" placeholder="Start Date" data-date-container='#datepicker1' style="font-size: 12px"
-                                            data-provide="datepicker" data-date-autoclose="true" autocomplete="off" data-date-language="th-th" value="{{ $vstdate }}" style="color:rgb(6, 152, 236);font-size:14px;" required />
+                                            data-provide="datepicker" data-date-autoclose="true" autocomplete="off" data-date-language="th-th" value="{{ $vstdate }}" style="color:rgb(6, 152, 236);font-size:13px;" required />
                                     </div>                                 
                                 </div>
                             </div>
@@ -141,19 +141,19 @@
                             <div class="col-md-4">
                                 <div class="input-group flex-nowrap">
                                     <span class="input-group-text" id="addon-wrapping" style="color:rgb(2, 80, 168)">โรคประจำตัว</span>
-                                    <input type="text" class="form-control input_new" id="CONGENITAL" name="congenital" placeholder="" aria-label="โรคประจำตัว" aria-describedby="addon-wrapping" style="color:rgb(6, 152, 236)">
+                                    <input type="text" class="form-control input_new" id="CONGENITAL" name="congenital" placeholder="" aria-label="โรคประจำตัว" aria-describedby="addon-wrapping" style="color:rgb(6, 152, 236);font-size:13px">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="input-group flex-nowrap">
                                     <span class="input-group-text" id="addon-wrapping" style="color:rgb(2, 80, 168)">การแพ้ยา</span>
-                                    <input type="text" class="form-control input_new" id="INTOLERANCE" name="intolerance" placeholder="" aria-label="การแพ้ยา" aria-describedby="addon-wrapping" style="color:rgb(6, 152, 236)">
+                                    <input type="text" class="form-control input_new" id="INTOLERANCE" name="intolerance" placeholder="" aria-label="การแพ้ยา" aria-describedby="addon-wrapping" style="color:rgb(6, 152, 236);font-size:13px">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="input-group flex-nowrap">
                                     <span class="input-group-text" id="addon-wrapping" style="color:rgb(2, 80, 168)">อัตราการหายใจ</span>
-                                    <input type="text" class="form-control input_new" id="RESPIRATION" name="respiration" placeholder="" aria-label="อัตราการหายใจ" aria-describedby="addon-wrapping" style="color:rgb(6, 152, 236)">
+                                    <input type="text" class="form-control input_new" id="RESPIRATION" name="respiration" placeholder="" aria-label="อัตราการหายใจ" aria-describedby="addon-wrapping" style="color:rgb(6, 152, 236);font-size:13px">
                                 </div>
                             </div> 
                             
@@ -162,7 +162,7 @@
                             <div class="col-md-12">
                                 <div class="input-group flex-nowrap">
                                     <span class="input-group-text" id="addon-wrapping" style="color:rgb(2, 80, 168)">CC</span>
-                                    <input type="text" class="form-control input_new" id="CC" name="cc" placeholder="" aria-label="CC" aria-describedby="addon-wrapping" style="color:rgb(6, 152, 236)">
+                                    <input type="text" class="form-control input_new" id="CC" name="cc" placeholder="" aria-label="CC" aria-describedby="addon-wrapping" style="color:rgb(6, 152, 236);font-size:13px">
                                 </div>
                             </div>
                         </div>
@@ -201,6 +201,30 @@
                     }
                 })
         }
+        function selectsupreq(onestop_id) {
+                var hn_search = document.getElementById("hn_search").value;
+
+
+                // alert(onestop_id);
+                $.ajax({ 
+                    url: "{{ route('one.onestop_serviceshowseq') }}",
+                    method: "GET",
+                    data: {
+                        hn_search: hn_search,onestop_id: onestop_id 
+                    },
+                    success: function(result) {
+                        $('#HEIGHT').val(result.data_show.height)
+                        $('#WEIGHT').val(result.data_show.weight) 
+
+                        $('#PRESSURE').val(result.data_show.pressure) 
+                        $('#PULSE').val(result.data_show.pulse) 
+                        $('#CONGENITAL').val(result.data_show.congenital) 
+                        $('#INTOLERANCE').val(result.data_show.intolerance) 
+                        $('#RESPIRATION').val(result.data_show.respiration) 
+                        $('#CC').val(result.data_show.cc) 
+                    }
+                })
+            }
         $(document).ready(function() {
             $('#example').DataTable();
             $('#example2').DataTable();
