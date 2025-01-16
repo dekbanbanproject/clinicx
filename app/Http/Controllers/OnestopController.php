@@ -53,7 +53,7 @@ use App\Models\D_orf;
 use App\Models\D_odx;
 use App\Models\D_cht;
 use App\Models\D_cha;
-use App\Models\D_oop; 
+use App\Models\D_oop;
 use App\Models\D_adp;
 use App\Models\D_dru;
 use App\Models\D_idx;
@@ -69,7 +69,7 @@ use App\Models\Dapi_orf;
 use App\Models\Dapi_odx;
 use App\Models\Dapi_cht;
 use App\Models\Dapi_cha;
-use App\Models\Dapi_oop; 
+use App\Models\Dapi_oop;
 use App\Models\Dapi_adp;
 use App\Models\Dapi_dru;
 use App\Models\Dapi_idx;
@@ -88,7 +88,7 @@ use App\Models\D_apiofc_aer;
 use App\Models\D_apiofc_cha;
 use App\Models\D_apiofc_cht;
 use App\Models\D_apiofc_dru;
-use App\Models\D_apiofc_idx;  
+use App\Models\D_apiofc_idx;
 use App\Models\D_apiofc_pat;
 use App\Models\D_apiofc_ipd;
 use App\Models\D_apiofc_irf;
@@ -106,7 +106,7 @@ use App\Models\Fdh_orf;
 use App\Models\Fdh_odx;
 use App\Models\Fdh_cht;
 use App\Models\Fdh_cha;
-use App\Models\Fdh_oop; 
+use App\Models\Fdh_oop;
 use App\Models\Fdh_adp;
 use App\Models\Fdh_dru;
 use App\Models\Fdh_idx;
@@ -132,13 +132,13 @@ use SoapClient;
 // use SplFileObject;
 use Arr;
 use CURLFILE;
-use GuzzleHttp\Client; 
+use GuzzleHttp\Client;
 use App\Imports\ImportAcc_stm_ti;
 use App\Imports\ImportAcc_stm_tiexcel_import;
 use App\Imports\ImportAcc_stm_ofcexcel_import;
 use App\Imports\ImportAcc_stm_lgoexcel_import;
 use App\Models\Acc_1102050101_217_stam;
-use App\Models\Acc_opitemrece_stm; 
+use App\Models\Acc_opitemrece_stm;
 use SplFileObject;
 use PHPExcel;
 use PHPExcel_IOFactory;
@@ -147,22 +147,22 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Maatwebsite\Excel\Facades\Excel;
 use PhpOffice\PhpSpreadsheet\Reader\Exception;
 use PhpOffice\PhpSpreadsheet\Writer\Xls;
-use PhpOffice\PhpSpreadsheet\IOFactory; 
+use PhpOffice\PhpSpreadsheet\IOFactory;
 use App\Models\D_ofc_repexcel;
-use App\Models\Onestop; 
-use ZipArchive;  
+use App\Models\Onestop;
+use ZipArchive;
 use Illuminate\Support\Facades\Redirect;
 use PhpParser\Node\Stmt\If_;
-use Stevebauman\Location\Facades\Location; 
+use Stevebauman\Location\Facades\Location;
 use Illuminate\Filesystem\Filesystem;
- 
+
 
 date_default_timezone_set("Asia/Bangkok");
 
 
 class OnestopController extends Controller
  {
-    
+
     // ****************  *****************************
     public function onestop_serviceshow(Request $request)
     {
@@ -173,8 +173,8 @@ class OnestopController extends Controller
         // dd($data_one);
         return response()->json([
             'status'        => '200',
-            'data_show'     => $data_show, 
-            'data_one'      => $data_one, 
+            'data_show'     => $data_show,
+            'data_one'      => $data_one,
         ]);
     }
     public function onestop_serviceshowseq(Request $request)
@@ -187,25 +187,25 @@ class OnestopController extends Controller
         // dd($data_one);
         return response()->json([
             'status'        => '200',
-            'data_show'     => $data_show, 
-            'data_one'      => $data_one, 
+            'data_show'     => $data_show,
+            'data_one'      => $data_one,
         ]);
     }
-    
+
     public function onestop_vstdate(Request $request)
     {
-        $hn                 =  $request->hn_search;         
-        $data_sub     = DB::select('SELECT * FROM onestop WHERE hn = "'.$hn.'" GROUP BY onestop_id ORDER BY onestop_id ASC');
+        $hn                 =  $request->hn_search;
+        $data_sub     = DB::select('SELECT * FROM onestop WHERE hn = "'.$hn.'" ORDER BY onestop_id ASC');
         $count           = $request->get('count');
         $output = '
         <table class="table table-sm table-bordered" style="width: 100%;">
             <thead>
-                <tr>                  
-                    <td style="text-align: center;font-size: 13px;color:#6495ED;" >วันที่มารับบริการ</td> 
+                <tr>
+                    <td style="text-align: center;font-size: 13px;color:#6495ED;" >วันที่มารับบริการ</td>
                 </tr>
             </thead>
             <tbody id="myTable">';
-                foreach ($data_sub as $item) { 
+                foreach ($data_sub as $item) {
 
                 $output .= '
                     <tr height="20">
@@ -222,7 +222,7 @@ class OnestopController extends Controller
     // <td class="text-font" style="padding-left:10px;font-size: 13px;" align="center" >' . $item->vstdate . '</td>
 
     public function onestop_service_save(Request $request)
-    {   
+    {
         $year               = substr(date("Y"),2) + 43;
         $mounts             = date('m');
         $day                = date('d');
@@ -231,7 +231,7 @@ class OnestopController extends Controller
         $pattern_time = '/:/i';
         $time_preg = preg_replace($pattern_time, '', $ti);
         $vn                 = $year.''.$mounts.''.$day.''.$time_preg;
-          
+
         Onestop::insert([
                 'vn'         => $vn,
                 'hn'         => $request->hn,
@@ -246,15 +246,15 @@ class OnestopController extends Controller
                 'vsttime'    => $request->vsttime,
                 'intolerance' => $request->intolerance,
                 'congenital' => $request->congenital,
-                'cc'         => $request->cc,  
+                'cc'         => $request->cc,
             ]);
-       
+
         return response()->json([
             'status'     => '200'
         ]);
-        
+
     }
-    
-    
+
+
 
  }
